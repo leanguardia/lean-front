@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Logo from './components/Logo';
 import LogoLoop, { type LogoItem } from '../components/LogoLoop';
 import ProfileCard from '../components/ProfileCard';
@@ -20,6 +21,25 @@ export default function Home() {
     { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Música y Mezcla Deejay</p> },
     { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Autoconocimiento y expansión</p> },
   ];
+
+  const relationsImages = [
+    { src: '/images/relations/university-of-bristol.png', alt: 'University of Bristol', isSquare: false, url: 'https://www.bristol.ac.uk/science-engineering/' },
+    { src: '/images/relations/toptal.png', alt: 'Toptal', isSquare: false, url: 'https://www.toptal.com/developers/resume/leandro-guardia' },
+    { src: '/images/relations/chevening.png', alt: 'Chevening', isSquare: true, url: 'https://www.chevening.org/' },
+    { src: '/images/relations/ucb.png', alt: 'UCB', isSquare: true, url: 'https://cba.ucb.edu.bo/' },
+    { src: '/images/relations/elgeniox.png', alt: 'Elgeniox', isSquare: false, url: 'https://elgeniox.com/' },
+    { src: '/images/relations/nueva-acropolis.png', alt: 'Nueva Acropolis', isSquare: false, url: 'https://acropolis.org.bo/' },
+    { src: '/images/relations/caff.png', alt: 'CAFF', isSquare: true, url: 'https://froebel.edu.bo/' },
+    { src: '/images/relations/afs.png', alt: 'AFS', isSquare: true, url: 'https://www.afs.de/' },
+  ];
+
+  // Calculate grid template rows based on isSquare property
+  // Group images by rows (2 per row) and determine row height
+  const gridTemplateRows = Array.from({ length: relationsImages.length / 2 }, (_, rowIndex) => {
+    const firstImageInRow = relationsImages[rowIndex * 2];
+    // If the first image in the row is square, use 1fr, otherwise 0.65fr for horizontal
+    return firstImageInRow.isSquare ? '1fr' : '0.65fr';
+  }).join(' ');
 
   return (
     <div className="my-1 py-4 px-4 sm:py-4 mx-auto min-h-screen bg-background">
@@ -52,10 +72,53 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Relations - */}
+        <div className="sm:col-span-6 md:col-span-4 md:row-span-3 flex flex-col">
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-secondary border-2 border-secondary">
+            <div className="relative z-10 flex flex-col h-full px-1 py-4 lg:px-6 lg:py-4">
+              <h3 className="text-lg md:text-xl font-serif font-light text-gray-900 mb-2 md:mb-0">R E L A C I O N E S</h3>
+              <div 
+                className="grid grid-cols-2 gap-x-0 lg:gap-x-2 xl:gap-x-8 rounded-lg flex-1"
+                style={{ gridTemplateRows: gridTemplateRows }}
+              >
+                {relationsImages.map((image, index) => (
+                  <a
+                    key={index}
+                    href={image.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-secondary hover:bg-neutral-100 rounded-xl flex items-center justify-center p-2 m-1 transition-all duration-300 ease-out cursor-pointer overflow-hidden hover:scale-105"
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      width={image.isSquare ? 160 : 260}
+                      height={image.isSquare ? 160 : 80}
+                      className="w-full h-full object-contain p-0"
+                      sizes="(max-width: 180px) 100vw, 50vw"
+                    />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Chat with me */}
+        <div className="sm:col-span-6 md:col-span-4 row-span-2 flex flex-col">
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl flex-grow min-h-0">
+            <ProfileCard
+              avatarUrl="/images/lean.png"
+              name="Artificial Lean"
+              title="chat with me"
+              className="flex-1 min-h-0"
+            />
+          </div>
+        </div>
+
         {/* Interests */}
         <div className="xs:col-span-1 sm:col-span-6 md:col-span-4 row-span-2 md:row-span-3 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-secondary border-2 border-secondary">
-            <div className="absolute inset-0 bg-secondary"></div>
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-white border-2 border-gray-500">
             <div className="relative z-10 flex flex-col h-full p-6">
               <h3 className="text-lg md:text-xl font-serif font-light text-gray-900 mb-4">I N T E R E S E S</h3>
               <LogoLoop
@@ -67,41 +130,9 @@ export default function Home() {
                 gap={10}
                 ariaLabel="Interests"
                 fadeOut
-                fadeOutColor="var(--color-secondary)"
+                fadeOutColor="var(--color-white)"
                 className="h-full"
               />
-            </div>
-          </div>
-        </div>
-
-        {/* Chat with me */}
-        <div className="sm:col-span-6 md:col-span-4 row-span-2 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl flex-grow min-h-0">
-            <ProfileCard
-              avatarUrl="/lean.png"
-              name="Artificial Lean"
-              title="chat with me"
-              className="flex-1 min-h-0"
-            />
-          </div>
-        </div>
-
-        {/* Institutions - Fondo blanco con neutro (Gris Culto) para texto */}
-        <div className="sm:col-span-6 md:col-span-4 md:row-span-3 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-white transition-shadow border-2 border-gray-500">
-            <div className="relative z-10 flex flex-col h-full p-6">
-            <h3 className="text-lg md:text-xl font-serif font-light text-gray-900 mb-4">I N S T I T U T I O N S</h3>
-              <div className="space-y-4 flex-1">
-                <p className="text-neutral text-sm md:text-base leading-relaxed">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore.
-                </p>
-                <p className="text-neutral text-sm md:text-base leading-relaxed">
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.
-                </p>
-                <a href="#" className="text-accent font-medium hover:underline inline-block mt-4">
-                  Ver más →
-                </a>
-              </div>
             </div>
           </div>
         </div>
