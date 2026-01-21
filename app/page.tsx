@@ -26,7 +26,7 @@ export default function Home() {
 
         {/* Hero */}
         <div className="xs:col-span-1 sm:col-span-6 md:row-span-1 md:col-span-3 lg:col-span-2 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow flex items-center justify-center">
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 flex-grow flex items-center justify-center">
             <div className="relative z-10 flex items-center justify-center h-full w-full">
               <Logo className="h-full" />
             </div>
