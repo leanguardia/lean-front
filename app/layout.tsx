@@ -4,14 +4,17 @@ import { DM_Sans, Fraunces } from "next/font/google";
 
 import type { Metadata } from "next";
 
-const playfairDisplay = Fraunces({
+const serifFont = Fraunces({
   variable: "--font-fraunces",
-  weight: ['400', '600']
+  weight: ["400", "600"],
+  subsets: ["latin"],
+  display: "swap",
 });
 
-const dmSans = DM_Sans({
+const sansFont = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -40,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${playfairDisplay.variable} ${dmSans.variable} antialiased`}
+        className={`${serifFont.variable} ${sansFont.variable} antialiased`}
       >
         {children}
         <BreakpointIndicator />
