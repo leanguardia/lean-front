@@ -1,5 +1,6 @@
 import Logo from './components/Logo';
 import LogoLoop, { type LogoItem } from '../components/LogoLoop';
+import ProfileCard from '../components/ProfileCard';
 
 export default function Home() {
   const interests: LogoItem[] = [
@@ -38,13 +39,13 @@ export default function Home() {
           <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 flex-grow bg-primary border-2 border-primary">
             <div className="absolute inset-0 bg-primary"></div>
             <div className="relative z-10 flex flex-col items-center justify-center h-full p-6">
-              <h3 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-serif font-semibold text-gray-900 mb-3">
+              <h3 className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl font-serif font-semibold text-gray-800 mb-3">
                 leancontinuo
               </h3>
-              <p className="text-gray-700 font-semibold text-base md:text-lg">
-                Filosofía de evolución interna y externa
+              <p className="text-lg md:text-xl text-gray-700 font-sans text-center font-semibold pb-1">
+                Evolución interna y externa
               </p>
-              <p className="text-gray-700 font-semibold text-base md:text-lg">
+              <p className="text-md m:text-lg text-gray-600 font-sans text-center font-semibold">
                 Eleva la humanidad a través de la curiosidad y la acción
               </p>
             </div>
@@ -74,18 +75,14 @@ export default function Home() {
         </div>
 
         {/* Chat with me */}
-        <div className="sm:col-span-6 md:col-span-4 md:row-span-2 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-accent-light border-2 border-accent-light">
-            <div className="absolute inset-0 bg-accent-light"></div>
-            <div className="relative z-10 flex flex-col justify-center items-center h-full p-6 text-center">
-              <h3 className="text-3xl md:text-4xl font-serif text-gray-900 mb-4">Chat with my artificial self</h3>
-              <p className="text-gray-800 text-base md:text-lg mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </p>
-              <button className="px-6 py-3 bg-accent text-white rounded-2xl font-medium hover:bg-accent/90 transition-colors border-2 border-accent">
-                Iniciar conversación
-              </button>
-            </div>
+        <div className="sm:col-span-6 md:col-span-4 row-span-2 flex flex-col">
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl flex-grow min-h-0">
+            <ProfileCard
+              avatarUrl="/lean.png"
+              name="Artificial Lean"
+              title="chat with me"
+              className="flex-1 min-h-0"
+            />
           </div>
         </div>
 
