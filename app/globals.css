@@ -7,13 +7,15 @@
   --color-accent: #1E7CD6; /* Philosophical Blue - darkened from #339AF0 for better contrast with white text */
   --color-accent-light: #C3FAE8; /* Curiosity Green - for soft backgrounds */
   --color-background: #F8F9FA; /* Lean Background - minimalist general background */
-  
-  /* Fonts */
-  --font-family-sans: var(--font-dm-sans); /* For regular text - generates font-sans */
-  --font-family-serif: var(--font-fraunces); /* For headings - generates font-serif */
+}
+
+@theme inline {
+  /* Fonts - using inline to ensure next/font variables are available at build time */
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif; /* For regular text - generates font-sans */
+  --font-serif: var(--font-outfit), ui-serif, Georgia, serif; /* For headings - generates font-serif */
 }
 
 body {
   background: var(--color-background);
-  font-family: var(--font-family-sans);
+  font-family: var(--font-sans);
 }

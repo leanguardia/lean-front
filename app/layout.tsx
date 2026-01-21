@@ -1,17 +1,17 @@
 import "./globals.css";
 
-import { DM_Sans, Fraunces } from "next/font/google";
+import { DM_Sans, Outfit } from "next/font/google";
 
 import type { Metadata } from "next";
 
-const serifFont = Fraunces({
-  variable: "--font-fraunces",
-  weight: ["400", "600"],
+const outfit = Outfit({
+  variable: "--font-outfit",
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   display: "swap",
 });
 
-const sansFont = DM_Sans({
+const dmSans = DM_Sans({
   variable: "--font-dm-sans",
   subsets: ["latin"],
   display: "swap",
@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${serifFont.variable} ${sansFont.variable} antialiased`}
+        className={`${outfit.variable} ${dmSans.variable} antialiased`}
       >
         {children}
         <BreakpointIndicator />
