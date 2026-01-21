@@ -1,21 +1,72 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-@theme {
-  --color-primary: #A5D8FF; /* Evolution Blue - for hero and CTAs */
-  --color-secondary: #69DB7C; /* Growth Green - for interests and blog */
-  --color-neutral: #ADB5BD; /* Cultured Gray - for secondary text */
-  --color-accent: #1E7CD6; /* Philosophical Blue - darkened from #339AF0 for better contrast with white text */
-  --color-accent-light: #C3FAE8; /* Curiosity Green - for soft backgrounds */
-  --color-background: #F8F9FA; /* Lean Background - minimalist general background */
+/* 
+  Custom Color Palette
+  - primary: Evolution Blue - for hero and CTAs
+  - secondary: Growth Green - for interests and blog  
+  - neutral: Cultured Gray - for secondary text
+  - accent: Philosophical Blue - for CTAs and links
+  - accent-light: Curiosity Green - for soft backgrounds
+  - background: Lean Background - minimalist general background
+*/
+
+:root {
+  --radius: 0.625rem;
+  --background: #F8F9FA;
+  --foreground: #1a1a1a;
+  --primary: #A5D8FF;
+  --primary-foreground: #1a1a1a;
+  --secondary: #69DB7C;
+  --secondary-foreground: #1a1a1a;
+  --accent: #1E7CD6;
+  --accent-foreground: #ffffff;
+  --accent-light: #C3FAE8;
+  --accent-light-foreground: #1a1a1a;
+  --neutral: #ADB5BD;
+  --neutral-foreground: #1a1a1a;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #A5D8FF;
 }
 
 @theme inline {
   /* Fonts - using inline to ensure next/font variables are available at build time */
-  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif; /* For regular text - generates font-sans */
-  --font-serif: var(--font-outfit), ui-serif, Georgia, serif; /* For headings - generates font-serif */
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-outfit), ui-serif, Georgia, serif;
+  
+  /* Colors mapped from :root */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-light: var(--accent-light);
+  --color-accent-light-foreground: var(--accent-light-foreground);
+  --color-neutral: var(--neutral);
+  --color-neutral-foreground: var(--neutral-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  
+  /* Border radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
 body {
-  background: var(--color-background);
+  background: var(--background);
   font-family: var(--font-sans);
+  color: var(--foreground);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
 }

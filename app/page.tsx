@@ -1,6 +1,25 @@
 import Logo from './components/Logo';
+import LogoLoop, { type LogoItem } from '../components/LogoLoop';
 
 export default function Home() {
+  const interests: LogoItem[] = [
+    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Experimentación científica</p> },
+    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Inteligencia Artificial</p> },
+    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">ANÁLISIS DE DATOS</p> },
+    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Ingeniería de software</p> },
+    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">blockchain y descentralización</p> },
+    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Pensamiento Probabilístico</p> },
+    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Aprendizaje continuo</p> },
+    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Educación Orgánica</p> },
+    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Lectura y Escritura</p> },
+    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Filosofía ecléctica</p> },
+    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Cultura humanista</p> },
+    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Leyes de la naturaleza</p> },
+    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Arte y diseño visual</p> },
+    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Música y Mezcla Deejay</p> },
+    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Autoconocimiento y expansión</p> },
+  ];
+
   return (
     <div className="my-1 py-4 px-4 sm:py-4 mx-auto min-h-screen bg-background">
       <div className="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-12 gap-3 auto-rows-[210px] min-h-screen">
@@ -16,34 +35,40 @@ export default function Home() {
 
         {/* Why? */}
         <div className="xs:col-span-1 sm:col-span-6 md:row-span-1 md:col-span-5 lg:col-span-6 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-primary border-2 border-primary">
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 flex-grow bg-primary border-2 border-primary">
             <div className="absolute inset-0 bg-primary"></div>
-            <div className="relative z-10 flex flex-col justify-center h-full p-6">
-              <h3 className="text-4xl md:text-5xl font-serif font-semibold text-gray-900 mb-3">leancontinuo</h3>
-              <p className="text-gray-700 text-base md:text-lg">
-                Despertar la curiosdad para elevar la humanidad
+            <div className="relative z-10 flex flex-col items-center justify-center h-full p-6">
+              <h3 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-serif font-semibold text-gray-900 mb-3">
+                leancontinuo
+              </h3>
+              <p className="text-gray-700 font-semibold text-base md:text-lg">
+                Filosofía de evolución interna y externa
+              </p>
+              <p className="text-gray-700 font-semibold text-base md:text-lg">
+                Eleva la humanidad a través de la curiosidad y la acción
               </p>
             </div>
           </div>
         </div>
 
         {/* Interests */}
-        <div className="xs:col-span-1 sm:col-span-6 md:col-span-4 md:row-span-3 flex flex-col">
+        <div className="xs:col-span-1 sm:col-span-6 md:col-span-4 row-span-2 md:row-span-3 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-secondary border-2 border-secondary">
             <div className="absolute inset-0 bg-secondary"></div>
             <div className="relative z-10 flex flex-col h-full p-6">
-              <h3 className="text-lg md:text-xl font-serif font-light text-gray-900 mb-4">I N T E R E S T S</h3>
-              <div className="space-y-4 flex-1">
-                <p className="text-gray-800 text-sm md:text-base leading-relaxed">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.
-                </p>
-                <p className="text-gray-800 text-sm md:text-base leading-relaxed">
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                </p>
-                <p className="text-gray-800 text-sm md:text-base leading-relaxed">
-                  Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                </p>
-              </div>
+              <h3 className="text-lg md:text-xl font-serif font-light text-gray-900 mb-4">I N T E R E S E S</h3>
+              <LogoLoop
+                logos={interests}
+                direction="up"
+                speed={33}
+                hoverSpeed={99}
+                logoHeight={18}
+                gap={10}
+                ariaLabel="Interests"
+                fadeOut
+                fadeOutColor="var(--color-secondary)"
+                className="h-full"
+              />
             </div>
           </div>
         </div>
