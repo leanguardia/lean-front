@@ -1,3 +1,5 @@
+import Logo from './components/Logo';
+
 export default function Home() {
   return (
     <div className="py-4 px-4 sm:py-4 mx-auto min-h-screen bg-background">
@@ -5,13 +7,9 @@ export default function Home() {
 
         {/* Hero */}
         <div className="xs:col-span-1 sm:col-span-6 md:row-span-1 md:col-span-3 lg:col-span-2 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 flex-grow bg-primary hover:opacity-90 transition-opacity border-2 border-primary">
-            <div className="absolute inset-0 bg-primary"></div>
-            <div className="relative z-10 flex flex-col justify-between h-full p-6">
-              <h3 className="text-3xl md:text-4xl font-serif font-semibold text-gray-900 mb-4">Hero</h3>
-              <p className="text-gray-800 text-sm md:text-base">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
-              </p>
+          <div className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 flex-grow flex items-center justify-center">
+            <div className="relative z-10 flex items-center justify-center h-full w-full">
+              <Logo className="h-full" />
             </div>
           </div>
         </div>
@@ -21,7 +19,7 @@ export default function Home() {
           <div className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 flex-grow bg-accent hover:opacity-90 transition-opacity border-2 border-accent">
             <div className="absolute inset-0 bg-accent"></div>
             <div className="relative z-10 flex flex-col justify-center h-full p-6">
-              <h3 className="text-4xl md:text-5xl font-serif font-semibold text-white mb-3">Why?</h3>
+              <h3 className="text-4xl md:text-5xl font-serif font-semibold text-white mb-3">leancontinuo</h3>
               <p className="text-white/95 text-base md:text-lg leading-relaxed">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </p>
@@ -55,7 +53,7 @@ export default function Home() {
           <div className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 flex-grow bg-primary hover:opacity-90 transition-opacity border-2 border-primary">
             <div className="absolute inset-0 bg-primary"></div>
             <div className="relative z-10 flex flex-col justify-center items-center h-full p-6 text-center">
-              <h3 className="text-3xl md:text-4xl font-serif font-semibold text-gray-900 mb-4">Chat with me</h3>
+              <h3 className="text-3xl md:text-4xl font-serif font-semibold text-gray-900 mb-4">Chat with my artificial self</h3>
               <p className="text-gray-800 text-base md:text-lg mb-4">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               </p>
