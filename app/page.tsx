@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Logo from './components/Logo';
 import LogoLoop, { type LogoItem } from '../components/LogoLoop';
 import ProfileCard from '../components/ProfileCard';
+import { FaLinkedin, FaXTwitter, FaGithub, FaInstagram } from 'react-icons/fa6';
 
 export default function Home() {
   const interests: LogoItem[] = [
@@ -201,7 +202,7 @@ export default function Home() {
         </div>
 
         {/* Spotify */}
-        <div className="col-span-2 md:col-span-7 md:row-span-1 flex flex-col">
+        {/* <div className="col-span-2 md:col-span-7 md:row-span-1 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-accent-light border-2 border-accent-light">
             <div className="absolute inset-0 bg-accent-light"></div>
             <div className="relative z-10 flex flex-row items-center justify-between h-full p-6">
@@ -213,20 +214,48 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
+      </div>
 
-        {/* Socials */}
-        <div className="col-span-2 md:col-span-5 md:row-span-1 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-primary transition-shadow border-2 border-primary">
-            <div className="relative z-10 flex flex-col justify-center h-full p-6">
-              <h3 className="text-2xl md:text-3xl font-serif text-gray-900 mb-4">Socials</h3>
-              <div className="flex flex-wrap gap-3">
-                <a href="#" className="text-accent font-medium hover:underline text-sm px-3 py-1 border border-accent rounded hover:bg-accent hover:text-white transition-colors">Twitter</a>
-                <a href="#" className="text-accent font-medium hover:underline text-sm px-3 py-1 border border-accent rounded hover:bg-accent hover:text-white transition-colors">LinkedIn</a>
-                <a href="#" className="text-accent font-medium hover:underline text-sm px-3 py-1 border border-accent rounded hover:bg-accent hover:text-white transition-colors">GitHub</a>
-              </div>
-            </div>
-          </div>
+      {/* Socials - Full Width Row */}
+      <div className="w-full pt-6 pb-2 px-4">
+        <div className="flex items-center justify-center gap-6">
+          <a
+            href="https://www.linkedin.com/in/leandro-guardia"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-all duration-300 hover:scale-114 text-gray-800 hover:text-gray-600"
+            aria-label="LinkedIn"
+          >
+            <FaLinkedin className="w-6 h-6" />
+          </a>
+          <a
+            href="https://x.com/leancontinuo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-all duration-300 hover:scale-114 text-gray-800 hover:text-gray-600"
+            aria-label="X (Twitter)"
+          >
+            <FaXTwitter className="w-6 h-6" />
+          </a>
+          <a
+            href="https://github.com/leanguardia"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-all duration-300 hover:scale-114 text-gray-800 hover:text-gray-600"
+            aria-label="GitHub"
+          >
+            <FaGithub className="w-6 h-6" />
+          </a>
+          <a
+            href="https://www.instagram.com/leancontinuo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-all duration-300 hover:scale-114 text-gray-800 hover:text-gray-600"
+            aria-label="Instagram"
+          >
+            <FaInstagram className="w-6 h-6" />
+          </a>
         </div>
       </div>
     </div>
