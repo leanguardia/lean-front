@@ -152,12 +152,63 @@ export default function Home() {
         <div className="col-span-1 row-span-3 md:col-span-4 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-secondary border-2 border-secondary">
             <div className="relative z-10 flex flex-col h-full p-2 md:p-3 xl:p-6">
-              <h3 className="text-lg md:text-xl font-serif font-light text-gray-900 mb-4">A R T Í C U L O S</h3>
+              <h3 className="text-lg md:text-xl font-serif text-gray-900 mb-6">D A T A V I Z</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1">
+                <div className="p-4 bg-white rounded-2xl border border-neutral/30">
+                  <p className="text-neutral text-sm md:text-base leading-relaxed mb-3">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  </p>
+                  <a href="#" className="text-accent font-medium hover:underline">
+                    Explorar datos →
+                  </a>
+                </div>
+                <div className="p-4 bg-white rounded-2xl border border-neutral/30">
+                  <p className="text-neutral text-sm md:text-base leading-relaxed mb-3">
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  </p>
+                  <a href="#" className="text-accent font-medium hover:underline">
+                    Ver análisis →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Download CV */}
+        <div className="col-span-1 md:col-span-4 md:row-span-1 flex flex-col">
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl flex-grow bg-accent-light">
+            <div className="relative flex flex-1 items-center justify-center">
+              <Iridescence
+                color={[0.3,0.7,0.8]}
+                mouseReact={false}
+                amplitude={0.1}
+                speed={0.4}
+                className="absolute inset-0 w-full h-full"
+              />
+              
+              <a
+                href="https://t.me/leanguardia"
+                target="_blank"
+                aria-label="Escribeme en Telegram"
+                className="relative z-10 text-white px-8 py-3 rounded-full text-xl font-bold hover:scale-140 transition duration-300"
+              >
+                E S C R Í B E M E
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Data Viz */}
+        <div className="col-span-2 md:col-span-8 md:row-span-2 flex flex-col">
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-white transition-shadow border-2 border-gray-500">
+            <div className="relative z-10 flex flex-col h-full p-6">
+            <h3 className="text-lg md:text-xl font-serif font-light text-gray-900 mb-4">A R T Í C U L O S</h3>
               <div className="space-y-4 flex-1">
                 <article className="mb-4 p-3 bg-accent-light/50 rounded-lg">
                   <h4 className="text-xl font-serif font-semibold text-gray-900 mb-2">Todo comienza con tus valores</h4>
                   <p className="text-gray-800 text-sm leading-relaxed">
-                  Si prestas atención, todos exponemos nuestros valores continuamente…
+                    Si prestas atención, todos exponemos nuestros valores continuamente…
                   </p>
                 </article>
                 <article className="p-3 bg-accent-light/50 rounded-lg">
@@ -178,45 +229,6 @@ export default function Home() {
                   El camino de tierra era irregular, estaba marcado por huellas de caballo y ruedas de carrozas arrastradas…
                   </p>
                 </article>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Download CV */}
-        <div className="col-span-1 md:col-span-4 md:row-span-1 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl flex-grow bg-accent-light">
-            <Iridescence
-              color={[0.3,0.7,0.8]}
-              mouseReact={false}
-              amplitude={0.1}
-              speed={0.4}
-            />
-          </div>
-        </div>
-
-        {/* Data Viz */}
-        <div className="col-span-2 md:col-span-8 md:row-span-2 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-white transition-shadow border-2 border-gray-500">
-            <div className="relative z-10 flex flex-col h-full p-6">
-              <h3 className="text-lg md:text-xl font-serif text-gray-900 mb-6">D A T A V I Z</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1">
-                <div className="p-4 bg-white rounded-2xl border border-neutral/30">
-                  <p className="text-neutral text-sm md:text-base leading-relaxed mb-3">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </p>
-                  <a href="#" className="text-accent font-medium hover:underline">
-                    Explorar datos →
-                  </a>
-                </div>
-                <div className="p-4 bg-white rounded-2xl border border-neutral/30">
-                  <p className="text-neutral text-sm md:text-base leading-relaxed mb-3">
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  </p>
-                  <a href="#" className="text-accent font-medium hover:underline">
-                    Ver análisis →
-                  </a>
-                </div>
               </div>
             </div>
           </div>
