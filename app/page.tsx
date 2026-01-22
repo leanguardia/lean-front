@@ -5,21 +5,21 @@ import ProfileCard from '../components/ProfileCard';
 
 export default function Home() {
   const interests: LogoItem[] = [
-    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Experimentación científica</p> },
-    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Inteligencia Artificial</p> },
-    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">ANÁLISIS DE DATOS</p> },
-    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Ingeniería de software</p> },
-    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">blockchain y descentralización</p> },
-    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Pensamiento Probabilístico</p> },
-    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Aprendizaje continuo</p> },
-    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Educación Orgánica</p> },
-    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Lectura y Escritura</p> },
-    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Filosofía ecléctica</p> },
-    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Cultura humanista</p> },
-    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Leyes de la naturaleza</p> },
-    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Arte y diseño visual</p> },
-    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Música y Mezcla Deejay</p> },
-    { node: <p className="text-gray-800 uppercase font-semibold text-2xl">Autoconocimiento y expansión</p> },
+    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none ">Experimentación científica</span> },
+    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Inteligencia Artificial</span> },
+    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">ANÁLISIS DE DATOS</span> },
+    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Ingeniería de software</span> },
+    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">blockchain y descentralización</span> },
+    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Pensamiento Probabilístico</span> },
+    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Aprendizaje continuo</span> },
+    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Educación Orgánica</span> },
+    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Lectura y Escritura</span> },
+    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Filosofía ecléctica</span> },
+    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Cultura humanista</span> },
+    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Leyes de la naturaleza</span> },
+    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Arte y diseño visual</span> },
+    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Música y Mezcla Deejay</span> },
+    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Autoconocimiento y expansión</span> },
   ];
 
   const relationsImages = [
@@ -43,10 +43,10 @@ export default function Home() {
 
   return (
     <div className="my-1 py-4 px-4 sm:py-4 mx-auto min-h-screen bg-background">
-      <div className="grid grid-cols-1 sm:grid-cols-6 md:grid-cols-12 gap-3 auto-rows-[210px] min-h-screen">
+      <div className="grid grid-cols-2 md:grid-cols-12 gap-3 auto-rows-[210px] min-h-screen">
 
         {/* Hero */}
-        <div className="xs:col-span-1 sm:col-span-6 md:row-span-1 md:col-span-3 lg:col-span-2 flex flex-col">
+        <div className="col-span-1 md:col-span-3 lg:col-span-2 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 flex-grow flex items-center justify-center">
             <div className="relative z-10 flex items-center justify-center h-full w-full">
               <Logo className="h-full" />
@@ -54,18 +54,17 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Why? */}
-        <div className="xs:col-span-1 sm:col-span-6 md:row-span-1 md:col-span-5 lg:col-span-6 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 flex-grow bg-primary border-2 border-primary">
-            <div className="absolute inset-0 bg-primary"></div>
-            <div className="relative z-10 flex flex-col items-center justify-center h-full p-6">
-              <h3 className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl font-serif font-semibold text-gray-800 mb-3">
+        {/* Bio */}
+        <div className="col-span-1 md:col-span-5 lg:col-span-6 md:row-span-1 flex flex-col">
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-0 md:px-4 flex-grow bg-primary border-2 border-primary">
+            <div className="relative z-10 flex flex-col h-full p-6 items-center justify-center">
+              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-gray-800 mb-3">
                 leancontinuo
               </h3>
-              <p className="text-lg md:text-xl text-gray-700 font-sans text-center font-semibold pb-1">
+              <p className="leading-tight text-lg md:text-2xl text-gray-700 font-sans text-center font-semibold pb-1">
                 Evolución interna y externa
               </p>
-              <p className="text-md m:text-lg text-gray-600 font-sans text-center font-semibold">
+              <p className="leading-tight text-md md:text-lg text-gray-600 font-sans text-center font-semibold">
                 Eleva la humanidad a través de la curiosidad y la acción
               </p>
             </div>
@@ -73,9 +72,9 @@ export default function Home() {
         </div>
 
         {/* Relations - */}
-        <div className="sm:col-span-6 md:col-span-4 md:row-span-3 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-secondary border-2 border-secondary">
-            <div className="relative z-10 flex flex-col h-full px-1 py-4 lg:px-6 lg:py-4">
+        <div className="col-span-1 row-span-3 md:col-span-4 md:row-span-3 flex flex-col">
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-0 md:px-4 pb-0 md:pb-4 flex-grow bg-secondary border-2 border-secondary">
+            <div className="relative z-10 flex flex-col h-full px-1 py-4 lg:p-6">
               <h3 className="text-lg md:text-xl font-serif font-light text-gray-900 mb-2 md:mb-0">R E L A C I O N E S</h3>
               <div 
                 className="grid grid-cols-2 gap-x-0 lg:gap-x-2 xl:gap-x-8 rounded-lg flex-1"
@@ -105,7 +104,7 @@ export default function Home() {
         </div>
 
         {/* Chat with me */}
-        <div className="sm:col-span-6 md:col-span-4 row-span-2 flex flex-col">
+        <div className="col-span-1 row-span-2 md:col-span-4 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl flex-grow min-h-0">
             <ProfileCard
               avatarUrl="/images/lean.png"
@@ -117,8 +116,8 @@ export default function Home() {
         </div>
 
         {/* Interests */}
-        <div className="xs:col-span-1 sm:col-span-6 md:col-span-4 row-span-2 md:row-span-3 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-white border-2 border-gray-500">
+        <div className="col-span-1 row-span-3 md:col-span-4 flex flex-col">
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-0 md:px-1 lg:px-4 pb-0 md:pb-4 flex-grow bg-white border-2 border-gray-500">
             <div className="relative z-10 flex flex-col h-full p-6">
               <h3 className="text-lg md:text-xl font-serif font-light text-gray-900 mb-4">I N T E R E S E S</h3>
               <LogoLoop
@@ -138,7 +137,7 @@ export default function Home() {
         </div>
 
         {/* Blog */}
-        <div className="sm:col-span-6 md:col-span-4 md:row-span-3 flex flex-col">
+        <div className="col-span-2 md:col-span-4 md:row-span-3 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-secondary border-2 border-secondary">
             <div className="absolute inset-0 bg-secondary"></div>
             <div className="relative z-10 flex flex-col h-full p-6">
@@ -162,7 +161,7 @@ export default function Home() {
         </div>
 
         {/* Download CV */}
-        <div className="sm:col-span-6 md:col-span-4 md:row-span-1 flex flex-col">
+        <div className="col-span-2 md:col-span-4 md:row-span-1 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-accent-light border-2 border-accent-light">
             <div className="absolute inset-0 bg-accent-light"></div>
             <div className="relative z-10 flex flex-col justify-center h-full p-6">
@@ -175,7 +174,7 @@ export default function Home() {
         </div>
 
         {/* Data Viz */}
-        <div className="sm:col-span-6 md:col-span-8 md:row-span-2 flex flex-col">
+        <div className="col-span-2 md:col-span-8 md:row-span-2 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-white transition-shadow border-2 border-gray-500">
             <div className="relative z-10 flex flex-col h-full p-6">
               <h3 className="text-lg md:text-xl font-serif text-gray-900 mb-6">D A T A V I Z</h3>
@@ -202,7 +201,7 @@ export default function Home() {
         </div>
 
         {/* Spotify */}
-        <div className="sm:col-span-6 md:col-span-7 md:row-span-1 flex flex-col">
+        <div className="col-span-2 md:col-span-7 md:row-span-1 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-accent-light border-2 border-accent-light">
             <div className="absolute inset-0 bg-accent-light"></div>
             <div className="relative z-10 flex flex-row items-center justify-between h-full p-6">
@@ -217,7 +216,7 @@ export default function Home() {
         </div>
 
         {/* Socials */}
-        <div className="sm:col-span-6 md:col-span-5 md:row-span-1 flex flex-col">
+        <div className="col-span-2 md:col-span-5 md:row-span-1 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-primary transition-shadow border-2 border-primary">
             <div className="relative z-10 flex flex-col justify-center h-full p-6">
               <h3 className="text-2xl md:text-3xl font-serif text-gray-900 mb-4">Socials</h3>

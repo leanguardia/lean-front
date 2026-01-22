@@ -20,7 +20,7 @@ export default function Logo({ className = '', alt = 'Logo' }: LogoProps) {
           refraction={0.02}
           blur={0.015}
           liquid={0.075}
-          speed={0.1}
+          speed={0.14}
           brightness={1.3}
           contrast={0.7}
           angle={50}
