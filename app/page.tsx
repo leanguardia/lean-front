@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Logo from './components/Logo';
 import LogoLoop, { type LogoItem } from '../components/LogoLoop';
 import ProfileCard from '../components/ProfileCard';
+import SplitText from '../components/SplitText';
+import Iridescence from '../components/Iridescence';
 import { FaLinkedin, FaXTwitter, FaGithub, FaInstagram } from 'react-icons/fa6';
 
 export default function Home() {
@@ -59,15 +61,24 @@ export default function Home() {
         <div className="col-span-1 md:col-span-5 lg:col-span-6 md:row-span-1 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl px-0 md:px-4 flex-grow bg-primary border-2 border-primary">
             <div className="relative z-10 flex flex-col h-full p-6 items-center justify-center">
-              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-gray-800 mb-3">
-                leancontinuo
-              </h3>
-              <p className="leading-tight text-lg md:text-2xl text-gray-700 font-sans text-center font-semibold pb-1">
-                Evolución interna y externa
-              </p>
-              <p className="leading-tight text-md md:text-lg text-gray-600 font-sans text-center font-semibold">
-                Eleva la humanidad a través de la curiosidad y la acción
-              </p>
+              <SplitText
+                text="leancontinuo"
+                className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-gray-800 mb-3"
+                delay={50}
+                duration={1}
+              />
+              <SplitText
+                text="Evolución interna y externa"
+                className="leading-tight text-lg md:text-2xl text-gray-700 font-sans text-center font-semibold pb-1"
+                delay={70}
+                duration={1.1}
+              />
+              <SplitText
+                text="Eleva la humanidad a través de la curiosidad y la acción"
+                className="leading-tight text-md md:text-lg text-gray-600 font-sans text-center font-semibold"
+                delay={90}
+                duration={1.2}
+              />
             </div>
           </div>
         </div>
@@ -138,22 +149,33 @@ export default function Home() {
         </div>
 
         {/* Blog */}
-        <div className="col-span-2 md:col-span-4 md:row-span-3 flex flex-col">
+        <div className="col-span-1 row-span-3 md:col-span-4 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-secondary border-2 border-secondary">
-            <div className="absolute inset-0 bg-secondary"></div>
-            <div className="relative z-10 flex flex-col h-full p-6">
-            <h3 className="text-lg md:text-xl font-serif font-light text-gray-900 mb-4">B L O G</h3>
+            <div className="relative z-10 flex flex-col h-full p-2 md:p-3 xl:p-6">
+              <h3 className="text-lg md:text-xl font-serif font-light text-gray-900 mb-4">A R T Í C U L O S</h3>
               <div className="space-y-4 flex-1">
-                <article className="mb-4 p-3 bg-accent-light/50 rounded-2xl border border-secondary/30">
-                  <h4 className="text-xl font-serif font-semibold text-gray-900 mb-2">Lorem Ipsum</h4>
+                <article className="mb-4 p-3 bg-accent-light/50 rounded-lg">
+                  <h4 className="text-xl font-serif font-semibold text-gray-900 mb-2">Todo comienza con tus valores</h4>
                   <p className="text-gray-800 text-sm leading-relaxed">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt.
+                  Si prestas atención, todos exponemos nuestros valores continuamente…
                   </p>
                 </article>
-                <article className="p-3 bg-accent-light/50 rounded-2xl border border-secondary/30">
-                  <h4 className="text-xl font-serif font-semibold text-gray-900 mb-2">Dolor Sit Amet</h4>
+                <article className="p-3 bg-accent-light/50 rounded-lg">
+                  <h4 className="text-xl font-serif font-semibold text-gray-900 mb-2">Leer</h4>
                   <p className="text-gray-800 text-sm leading-relaxed">
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
+                    Te encuentras en una isla. La brisa es lenta y cálida, acaricia tu piel y se siente familiar…
+                  </p>
+                </article>
+                <article className="p-3 bg-accent-light/50 rounded-lg">
+                  <h4 className="text-xl font-serif font-semibold text-gray-900 mb-2">Síndrome del impostor</h4>
+                  <p className="text-gray-800 text-sm leading-relaxed">
+                    Mike, el cofundador de Atlassian y representante de Australia en el evento World Entrepreneur…
+                  </p>
+                </article>
+                <article className="p-3 bg-accent-light/50 rounded-lg">
+                  <h4 className="text-xl font-serif font-semibold text-gray-900 mb-2">Tecnología</h4>
+                  <p className="text-gray-800 text-sm leading-relaxed">
+                  El camino de tierra era irregular, estaba marcado por huellas de caballo y ruedas de carrozas arrastradas…
                   </p>
                 </article>
               </div>
@@ -162,15 +184,14 @@ export default function Home() {
         </div>
 
         {/* Download CV */}
-        <div className="col-span-2 md:col-span-4 md:row-span-1 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-accent-light border-2 border-accent-light">
-            <div className="absolute inset-0 bg-accent-light"></div>
-            <div className="relative z-10 flex flex-col justify-center h-full p-6">
-              <h3 className="text-2xl md:text-3xl font-serif text-gray-900 mb-2">CV</h3>
-              <p className="text-gray-800 text-sm">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              </p>
-            </div>
+        <div className="col-span-1 md:col-span-4 md:row-span-1 flex flex-col">
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl flex-grow bg-accent-light">
+            <Iridescence
+              color={[0.3,0.7,0.8]}
+              mouseReact={false}
+              amplitude={0.1}
+              speed={0.4}
+            />
           </div>
         </div>
 
