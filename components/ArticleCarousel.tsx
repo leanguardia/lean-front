@@ -109,9 +109,11 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
               className="w-full flex-none grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 h-full"
             >
               {page.map((article, idx) => (
-                <div
+                <button
                   key={`${pageIdx}-${idx}`}
-                  className="relative overflow-hidden rounded-lg bg-white border border-gray-200 flex flex-col"
+                  type="button"
+                  onClick={() => alert('¿en verdad ibas a leer el artículo?')}
+                  className="group relative overflow-hidden rounded-lg bg-white border border-gray-200 flex flex-col text-left cursor-pointer transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md hover:border-gray-300"
                 >
                   {/* Image section */}
                   <div className="relative h-3/5 w-full">
@@ -119,7 +121,7 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
                       src={article.image}
                       alt={article.title}
                       fill
-                      className="object-cover"
+                      className="object-cover transition-transform duration-200 ease-out group-hover:scale-[1.02]"
                       sizes="(max-width: 768px) 100vw, 50vw"
                       priority={pageIdx === 0 && idx === 0}
                     />
@@ -134,7 +136,7 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
                       {article.excerpt}
                     </p>
                   </div>
-                </div>
+                </button>
               ))}
             </div>
           ))}
