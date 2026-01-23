@@ -51,6 +51,7 @@ interface IridescenceProps {
   speed?: number;
   amplitude?: number;
   mouseReact?: boolean;
+  className?: string;
 }
 
 export default function Iridescence({

@@ -4,6 +4,7 @@ import LogoLoop, { type LogoItem } from '../components/LogoLoop';
 import ProfileCard from '../components/ProfileCard';
 import SplitText from '../components/SplitText';
 import Iridescence from '../components/Iridescence';
+import ArticleCarousel, { type Article } from '../components/ArticleCarousel';
 import { FaLinkedin, FaXTwitter, FaGithub, FaInstagram } from 'react-icons/fa6';
 
 export default function Home() {
@@ -43,6 +44,29 @@ export default function Home() {
     // If the first image in the row is square, use 1fr, otherwise 0.65fr for horizontal
     return firstImageInRow.isSquare ? '1fr' : '0.65fr';
   }).join(' ');
+
+  const articles: Article[] = [
+    {
+      title: 'Todo comienza con tus valores',
+      excerpt: 'Si prestas atención, todos exponemos nuestros valores continuamente…',
+      image: '/images/articles/valores.jpeg',
+    },
+    {
+      title: 'Leer',
+      excerpt: 'Te encuentras en una isla. La brisa es lenta y cálida, acaricia tu piel y se siente familiar…',
+      image: '/images/articles/leer.jpeg',
+    },
+    {
+      title: 'Síndrome del impostor',
+      excerpt: 'Mike, el cofundador de Atlassian y representante de Australia en el evento World Entrepreneur…',
+      image: '/images/articles/imposter.jpeg',
+    },
+    {
+      title: 'Tecnología',
+      excerpt: 'El camino de tierra era irregular, estaba marcado por huellas de caballo y ruedas de carrozas arrastradas…',
+      image: '/images/articles/tecnologia.jpeg',
+    },
+  ];
 
   return (
     <div className="my-1 py-4 px-4 sm:py-4 mx-auto min-h-screen bg-background">
@@ -175,7 +199,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Download CV */}
+        {/* CTA */}
         <div className="col-span-1 md:col-span-4 md:row-span-1 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl flex-grow bg-accent-light">
             <div className="relative flex flex-1 items-center justify-center">
@@ -191,7 +215,7 @@ export default function Home() {
                 href="https://t.me/leanguardia"
                 target="_blank"
                 aria-label="Escribeme en Telegram"
-                className="relative z-10 text-white px-8 py-3 rounded-full text-xl font-bold hover:scale-140 transition duration-300"
+                className="relative z-10 text-white px-8 py-3 rounded-full text-xl opacity-85 font-bold hover:scale-140 hover:opacity-100 transition duration-300"
               >
                 E S C R Í B E M E
               </a>
@@ -199,37 +223,11 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Data Viz */}
+        {/* Artículos Carousel */}
         <div className="col-span-2 md:col-span-8 md:row-span-2 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-white transition-shadow border-2 border-gray-500">
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-2 flex-grow bg-white transition-shadow border-2 border-gray-500">
             <div className="relative z-10 flex flex-col h-full p-6">
-            <h3 className="text-lg md:text-xl font-serif font-light text-gray-900 mb-4">A R T Í C U L O S</h3>
-              <div className="space-y-4 flex-1">
-                <article className="mb-4 p-3 bg-accent-light/50 rounded-lg">
-                  <h4 className="text-xl font-serif font-semibold text-gray-900 mb-2">Todo comienza con tus valores</h4>
-                  <p className="text-gray-800 text-sm leading-relaxed">
-                    Si prestas atención, todos exponemos nuestros valores continuamente…
-                  </p>
-                </article>
-                <article className="p-3 bg-accent-light/50 rounded-lg">
-                  <h4 className="text-xl font-serif font-semibold text-gray-900 mb-2">Leer</h4>
-                  <p className="text-gray-800 text-sm leading-relaxed">
-                    Te encuentras en una isla. La brisa es lenta y cálida, acaricia tu piel y se siente familiar…
-                  </p>
-                </article>
-                <article className="p-3 bg-accent-light/50 rounded-lg">
-                  <h4 className="text-xl font-serif font-semibold text-gray-900 mb-2">Síndrome del impostor</h4>
-                  <p className="text-gray-800 text-sm leading-relaxed">
-                    Mike, el cofundador de Atlassian y representante de Australia en el evento World Entrepreneur…
-                  </p>
-                </article>
-                <article className="p-3 bg-accent-light/50 rounded-lg">
-                  <h4 className="text-xl font-serif font-semibold text-gray-900 mb-2">Tecnología</h4>
-                  <p className="text-gray-800 text-sm leading-relaxed">
-                  El camino de tierra era irregular, estaba marcado por huellas de caballo y ruedas de carrozas arrastradas…
-                  </p>
-                </article>
-              </div>
+              <ArticleCarousel articles={articles} />
             </div>
           </div>
         </div>
