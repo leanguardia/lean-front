@@ -174,7 +174,7 @@ export default function Home() {
 
         {/* Blog */}
         <div className="col-span-1 row-span-3 md:col-span-4 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-secondary border-2 border-secondary">
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-2 flex-grow bg-secondary border-2 border-secondary">
             <div className="relative z-10 flex flex-col h-full p-2 md:p-3 xl:p-6">
               <h3 className="text-lg md:text-xl font-serif text-gray-900 mb-6">D A T A V I Z</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1">
