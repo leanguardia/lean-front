@@ -23,13 +23,10 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
 
   useEffect(() => {
     const handleResize = () => {
-      // Tailwind breakpoints: sm = 640px, md = 768px
-      // Requirement: 1 on xs, 2 on sm and above.
-      if (window.innerWidth >= 640) {
-        setSlidesPerView(2);
-      } else {
-        setSlidesPerView(1);
-      }
+      // Tailwind breakpoints: sm = 640px, 2xl = 1536px
+      // Requirement: 1 on xs, 2 on sm+, 4 on 2xl+.
+      const w = window.innerWidth;
+      setSlidesPerView(w >= 1536 ? 4 : w >= 640 ? 2 : 1);
     };
 
     handleResize();
@@ -94,7 +91,8 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
       </div>
 
       {/* Carousel content */}
-      <div className="flex-1 relative overflow-hidden">
+      {/* Hide horizontal overflow for slide; keep vertical overflow visible for hover shadows */}
+      <div className="flex-1 relative overflow-x-hidden overflow-y-visible">
         <div
           className="h-full flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -102,7 +100,7 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
           {pages.map((page, pageIdx) => (
             <div
               key={pageIdx}
-              className="w-full flex-none grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 h-full"
+              className="w-full flex-none grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-3 md:gap-4 h-full"
             >
               {page.map((article, idx) => (
                 <button

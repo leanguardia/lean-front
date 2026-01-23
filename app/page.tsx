@@ -90,10 +90,10 @@ export default function Home() {
                 <ShinyText text="leancontinuo"/>
               </div>
               <div className="text-2xl text-gray-700 font-sans leading-tight text-center font-semibold pb-1">
-                <ShinyText text="Evolución interna y externa"/>
+                <ShinyText text="evolución interna y externa"/>
               </div>
               <div className="text-lg text-gray-600 font-sans leading-tight text-center font-semibold">
-                <ShinyText text="Eleva la humanidad a través de la curiosidad y la acción"/>
+                <ShinyText text="curiosidad y acción para elevar la humanidad"/>
               </div>
             </div>
           </div>
