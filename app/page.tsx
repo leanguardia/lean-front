@@ -70,12 +70,12 @@ export default function Home() {
   ];
 
   return (
-    <div className="my-1 py-4 px-4 sm:py-4 mx-auto min-h-screen bg-background">
-      <div className="grid grid-cols-2 md:grid-cols-12 gap-3 auto-rows-[210px] min-h-screen">
+    <div className="my-1 py-3 px-2 md:py-4 md:px-4 mx-auto min-h-screen bg-background">
+      <div className="grid grid-cols-2 md:grid-cols-12 gap-2 md:gap-3 auto-rows-[210px] min-h-screen">
 
         {/* Hero */}
-        <div className="col-span-1 md:col-span-3 lg:col-span-2 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 flex-grow flex items-center justify-center">
+        <div className="col-span-2 md:col-span-3 lg:col-span-2 flex flex-col">
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-3 md:px-4 flex-grow flex items-center justify-center">
             <div className="relative z-10 flex items-center justify-center h-full w-full">
               <Logo className="h-full" />
             </div>
@@ -83,27 +83,29 @@ export default function Home() {
         </div>
 
         {/* Bio */}
-        <div className="col-span-1 md:col-span-5 lg:col-span-6 md:row-span-1 flex flex-col">
+        <div className="col-span-2 md:col-span-5 lg:col-span-6 md:row-span-1 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl px-0 md:px-4 flex-grow bg-primary border-2 border-primary">
-            <div className="relative z-10 flex flex-col h-full p-6 items-center justify-center">
-              <div className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-gray-800 mb-3">
+            <div className="relative z-10 flex flex-col h-full p-4 md:p-6 items-center justify-center">
+              <div className="text-4xl lg:text-5xl font-serif font-semibold text-gray-800 mb-3">
                 <ShinyText text="leancontinuo"/>
               </div>
-              <div className="leading-tight text-lg md:text-2xl text-gray-700 font-sans text-center font-semibold pb-1">
+              <div className="text-2xl text-gray-700 font-sans leading-tight text-center font-semibold pb-1">
                 <ShinyText text="Evolución interna y externa"/>
               </div>
-              <div className="leading-tight text-md md:text-lg text-gray-600 font-sans text-center font-semibold">
+              <div className="text-lg text-gray-600 font-sans leading-tight text-center font-semibold">
                 <ShinyText text="Eleva la humanidad a través de la curiosidad y la acción"/>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Relations - */}
+        {/* Experiences - */}
         <div className="col-span-1 row-span-3 md:col-span-4 md:row-span-3 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-0 md:px-4 pb-0 md:pb-4 flex-grow bg-secondary border-2 border-secondary">
-            <div className="relative z-10 flex flex-col h-full px-1 py-4 lg:p-6">
-              <h3 className="text-lg md:text-xl font-serif font-light text-gray-900 mb-2 md:mb-0">R E L A C I O N E S</h3>
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-3 md:px-4 pb-0 md:pb-4 flex-grow bg-secondary border-2 border-secondary">
+            <div className="relative z-10 flex flex-col h-full px-1 py-3 md:py-4 lg:p-6">
+              <h3 className="text-md md:text-xl font-serif font-light text-gray-900 mb-2 md:mb-0">
+                E X P E R I E N C I A
+              </h3>
               <div 
                 className="grid grid-cols-2 gap-x-0 lg:gap-x-2 xl:gap-x-8 rounded-lg flex-1"
                 style={{ gridTemplateRows: gridTemplateRows }}
@@ -146,8 +148,8 @@ export default function Home() {
         {/* Interests */}
         <div className="col-span-1 row-span-3 md:col-span-4 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl px-0 md:px-1 lg:px-4 pb-0 md:pb-4 flex-grow bg-white border-2 border-gray-500">
-            <div className="relative z-10 flex flex-col h-full p-6">
-              <h3 className="text-lg md:text-xl font-serif font-light text-gray-900 mb-4">I N T E R E S E S</h3>
+            <div className="relative z-10 flex flex-col h-full p-4 md:p-6">
+              <h3 className="text-md md:text-xl font-serif font-light text-gray-900 mb-4">I N T E R E S E S</h3>
               <LogoLoop
                 logos={interests}
                 direction="up"
@@ -166,7 +168,7 @@ export default function Home() {
 
         {/* Blog */}
         <div className="col-span-1 row-span-3 md:col-span-4 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-2 flex-grow">
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-3 md:px-4 pb-2 flex-grow">
             {/* Gradient circle background */}
             <div
               aria-hidden="true"
@@ -185,9 +187,9 @@ export default function Home() {
               />
             </div>
             <div className="relative z-10 flex flex-col h-full p-2 md:p-3 xl:p-6">
-              <h3 className="text-lg md:text-xl font-serif text-gray-900 mb-6">
-                D A T A V I Z 
-                <span className="text-gray-600 font-serif text-sm inline-block ml-2">próximamente</span>
+              <h3 className="text-md md:text-xl font-serif text-gray-900 mb-6">
+                D A T O S
+                <span className="text-gray-600 font-serif text-sm inline-block ml-1 md:ml-2">próximamente</span>
               </h3>
               <div className="flex-1 flex items-center justify-center">
                 <div className="w-full h-full max-w-[420px] mx-auto aspect-[5/4] sm:aspect-[5/3] md:aspect-[5/2]">
@@ -222,7 +224,7 @@ export default function Home() {
                 href="https://t.me/leanguardia"
                 target="_blank"
                 aria-label="Escribeme en Telegram"
-                className="relative z-10 text-white px-8 py-3 rounded-full text-xl opacity-85 font-bold hover:scale-140 hover:opacity-100 transition duration-300"
+                className="relative z-10 text-white rounded-full text-xl opacity-85 font-bold hover:scale-140 hover:opacity-100 transition duration-300"
               >
                 E S C R Í B E M E
               </a>
@@ -231,9 +233,9 @@ export default function Home() {
         </div>
 
         {/* Artículos Carousel */}
-        <div className="col-span-2 md:col-span-8 md:row-span-2 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-2 flex-grow bg-white transition-shadow border-2 border-gray-500">
-            <div className="relative z-10 flex flex-col h-full p-6">
+        <div className="col-span-2 row-span-2 md:col-span-8 md:row-span-2 flex flex-col">
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-3 md:px-4 pb-2 flex-grow bg-white transition-shadow border-2 border-gray-500">
+            <div className="relative z-10 flex flex-col h-full p-4 md:p-6">
               <ArticleCarousel articles={articles} />
             </div>
           </div>
@@ -256,7 +258,7 @@ export default function Home() {
       </div>
 
       {/* Socials - Full Width Row */}
-      <div className="w-full pt-6 pb-2 px-4">
+      <div className="w-full pt-4 md:pt-6 pb-2 px-3 md:px-4">
         <div className="flex items-center justify-center gap-6">
           <a
             href="https://www.linkedin.com/in/leandro-guardia"

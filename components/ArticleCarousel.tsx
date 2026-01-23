@@ -23,7 +23,9 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) {
+      // Tailwind breakpoints: sm = 640px, md = 768px
+      // Requirement: 1 on xs, 2 on sm and above.
+      if (window.innerWidth >= 640) {
         setSlidesPerView(2);
       } else {
         setSlidesPerView(1);
@@ -59,16 +61,10 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
     <div className="h-full flex flex-col">
       {/* Header with navigation */}
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg md:text-xl font-serif font-light text-gray-900">
+        <h3 className="text-md md:text-xl font-serif font-light text-gray-900">
           A R T Í C U L O S
         </h3>
         <div className="flex items-center gap-3">
-          {/* <a
-            href="/blog"
-            className="text-sm md:text-base text-gray-600 hover:text-gray-900 font-medium transition-colors"
-          >
-            leer más →
-          </a> */}
           <div className="flex gap-2">
             <button
               onClick={prevSlide}
@@ -106,7 +102,7 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
           {pages.map((page, pageIdx) => (
             <div
               key={pageIdx}
-              className="w-full flex-none grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 h-full"
+              className="w-full flex-none grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 h-full"
             >
               {page.map((article, idx) => (
                 <button

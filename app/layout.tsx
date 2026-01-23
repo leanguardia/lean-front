@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   },
 };
 
-const BreakpointIndicator = function() { // REMOVE
+const BreakpointIndicator = function () {
   return (
     <div className="fixed bottom-4 right-4 z-50 flex items-center justify-center rounded-full bg-black px-3 py-2 text-xs font-mono text-white">
       <div className="block sm:hidden">xs</div>
@@ -41,20 +41,22 @@ const BreakpointIndicator = function() { // REMOVE
       <div className="hidden 2xl:block">2xl</div>
     </div>
   );
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const showBreakpointIndicator = process.env.NODE_ENV !== "production";
+
   return (
     <html lang="es">
       <body
         className={`${outfit.variable} ${dmSans.variable} antialiased`}
       >
         {children}
-        <BreakpointIndicator />
+        {showBreakpointIndicator ? <BreakpointIndicator /> : null}
       </body>
     </html>
   );

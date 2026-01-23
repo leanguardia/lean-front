@@ -533,68 +533,26 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
               }}
             >
               <div 
-                className="absolute bottom-7 left-1/2 w-[calc(100%-5rem)] max-w-md"
+                className="absolute bottom-4 md:bottom-7 left-1/2 w-[calc(100%-2rem)] sm:w-[calc(100%-3rem)] md:w-[calc(100%-5rem)] max-w-md"
                 style={{
                   transform: 'translate3d(calc(-50% + (var(--pointer-from-left) - 0.5) * 3px), calc((var(--pointer-from-top) - 0.5) * 3px), 0.1px)',
                   pointerEvents: 'auto'
                 }}
               >
-                {/* Glassmorphism container */}
-                <div
-                  className="rounded-2xl px-4 py-3 backdrop-blur-lg cursor-pointer transition-all duration-300 ease-out"
-                  style={{
-                    background: 'rgba(210, 210, 210, 0.5)',
-                    boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.30)',
-                    backdropFilter: 'blur(80px) saturate(180%)',
-                    WebkitBackdropFilter: 'blur(80px) saturate(180%)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'scale(1.02)';
-                    e.currentTarget.style.boxShadow = '0 12px 40px 0 rgba(0, 0, 0, 0.40)';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-                    e.currentTarget.style.background = 'rgba(220, 220, 220, 0.55)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'scale(1)';
-                    e.currentTarget.style.boxShadow = '0 8px 32px 0 rgba(0, 0, 0, 0.30)';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                    e.currentTarget.style.background = 'rgba(210, 210, 210, 0.5)';
-                  }}
+                <button
+                  type="button"
+                  className="w-full rounded-2xl px-4 py-3 text-center cursor-pointer bg-white/40 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.28)] transition duration-200 ease-out hover:bg-white/45 hover:border-white/30 hover:shadow-[0_12px_40px_rgba(0,0,0,0.32)] active:scale-[0.99]"
                   onClick={() => {
                     alert('todo lo bueno viene despacio...');
                   }}
                 >
-                  <h3
-                    className="font-semibold m-0 text-center"
-                    style={{
-                      fontSize: 'min(3.5svh, 2.5em)',
-                      backgroundImage: 'linear-gradient(to bottom, #1E7CD6, #0d5ba3)',
-                      backgroundSize: '1em 1.5em',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
-                      WebkitBackgroundClip: 'text',
-                      lineHeight: 1.1,
-                      display: 'block',
-                    }}
-                  >
+                  <h3 className="m-0 font-sans font-semibold text-gray-700 leading-tight text-lg sm:text-xl">
                     {name}
                   </h3>
-                  <p
-                    className="font-semibold whitespace-nowrap mx-auto w-min mt-1"
-                    style={{
-                      fontSize: '18px',
-                      backgroundImage: 'linear-gradient(to bottom, #1E7CD6, #0d5ba3)',
-                      backgroundSize: '1em 1.5em',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
-                      WebkitBackgroundClip: 'text',
-                      display: 'block',
-                    }}
-                  >
+                  <p className="mt-1 font-medium text-gray-700/90 text-sm sm:text-base leading-tight">
                     {title}
                   </p>
-                </div>
+                </button>
               </div>
             </div>
           </div>
