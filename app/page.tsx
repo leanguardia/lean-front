@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Logo from './components/Logo';
 import LogoLoop, { type LogoItem } from '../components/LogoLoop';
+import MagnetLines from '@/components/MagnetLines';
 import ProfileCard from '../components/ProfileCard';
-import SplitText from '../components/SplitText';
 import Iridescence from '../components/Iridescence';
 import ArticleCarousel, { type Article } from '../components/ArticleCarousel';
 import { FaLinkedin, FaXTwitter, FaGithub, FaInstagram } from 'react-icons/fa6';
@@ -85,24 +85,15 @@ export default function Home() {
         <div className="col-span-1 md:col-span-5 lg:col-span-6 md:row-span-1 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl px-0 md:px-4 flex-grow bg-primary border-2 border-primary">
             <div className="relative z-10 flex flex-col h-full p-6 items-center justify-center">
-              <SplitText
-                text="leancontinuo"
-                className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-gray-800 mb-3"
-                delay={50}
-                duration={1}
-              />
-              <SplitText
-                text="Evolución interna y externa"
-                className="leading-tight text-lg md:text-2xl text-gray-700 font-sans text-center font-semibold pb-1"
-                delay={70}
-                duration={1.1}
-              />
-              <SplitText
-                text="Eleva la humanidad a través de la curiosidad y la acción"
-                className="leading-tight text-md md:text-lg text-gray-600 font-sans text-center font-semibold"
-                delay={90}
-                duration={1.2}
-              />
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-gray-800 mb-3">
+                leancontinuo
+              </div>
+              <div className="leading-tight text-lg md:text-2xl text-gray-700 font-sans text-center font-semibold pb-1">
+                Evolución interna y externa
+              </div>
+              <div className="leading-tight text-md md:text-lg text-gray-600 font-sans text-center font-semibold">
+                Eleva la humanidad a través de la curiosidad y la acción
+              </div>
             </div>
           </div>
         </div>
@@ -174,25 +165,40 @@ export default function Home() {
 
         {/* Blog */}
         <div className="col-span-1 row-span-3 md:col-span-4 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-2 flex-grow bg-secondary border-2 border-secondary">
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-2 flex-grow">
+            {/* Gradient circle background */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 flex items-center justify-center pointer-events-none"
+            >
+              <div
+                className="z-0"
+                style={{
+                  position: 'absolute',
+                  width: '100%',
+                  height: '100%',
+                  background:
+                    'radial-gradient(circle, var(--color-accent) 0%, var(--color-secondary) 100%)',
+                  opacity: 0.75,
+                }}
+              />
+            </div>
             <div className="relative z-10 flex flex-col h-full p-2 md:p-3 xl:p-6">
-              <h3 className="text-lg md:text-xl font-serif text-gray-900 mb-6">D A T A V I Z</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1">
-                <div className="p-4 bg-white rounded-2xl border border-neutral/30">
-                  <p className="text-neutral text-sm md:text-base leading-relaxed mb-3">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </p>
-                  <a href="#" className="text-accent font-medium hover:underline">
-                    Explorar datos →
-                  </a>
-                </div>
-                <div className="p-4 bg-white rounded-2xl border border-neutral/30">
-                  <p className="text-neutral text-sm md:text-base leading-relaxed mb-3">
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  </p>
-                  <a href="#" className="text-accent font-medium hover:underline">
-                    Ver análisis →
-                  </a>
+              <h3 className="text-lg md:text-xl font-serif text-gray-900 mb-6">
+                D A T A V I Z 
+                <span className="text-gray-600 font-serif text-sm inline-block ml-2">próximamente</span>
+              </h3>
+              <div className="flex-1 flex items-center justify-center">
+                <div className="w-full h-full max-w-[420px] mx-auto aspect-[5/4] sm:aspect-[5/3] md:aspect-[5/2]">
+                  <MagnetLines
+                    containerSize="100%"
+                    rows={10}
+                    columns={6}
+                    lineColor="var(--color-accent-light)"
+                    lineHeight="min(7.5vw, 48px)"
+                    lineWidth="min(1vw, 6px)"
+                    className="w-full h-full"
+                  />
                 </div>
               </div>
             </div>

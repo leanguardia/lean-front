@@ -100,7 +100,7 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
       {/* Carousel content */}
       <div className="flex-1 relative overflow-hidden">
         <div
-          className="h-full flex transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform"
+          className="h-full flex transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {pages.map((page, pageIdx) => (
