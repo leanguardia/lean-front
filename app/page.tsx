@@ -3,6 +3,7 @@ import Logo from './components/Logo';
 import LogoLoop, { type LogoItem } from '../components/LogoLoop';
 import MagnetLines from '@/components/MagnetLines';
 import ProfileCard from '../components/ProfileCard';
+import ShinyText from '../components/ShinyText';
 import Iridescence from '../components/Iridescence';
 import ArticleCarousel, { type Article } from '../components/ArticleCarousel';
 import { FaLinkedin, FaXTwitter, FaGithub, FaInstagram } from 'react-icons/fa6';
@@ -86,13 +87,13 @@ export default function Home() {
           <div className="group relative flex flex-col overflow-hidden rounded-2xl px-0 md:px-4 flex-grow bg-primary border-2 border-primary">
             <div className="relative z-10 flex flex-col h-full p-6 items-center justify-center">
               <div className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-gray-800 mb-3">
-                leancontinuo
+                <ShinyText text="leancontinuo"/>
               </div>
               <div className="leading-tight text-lg md:text-2xl text-gray-700 font-sans text-center font-semibold pb-1">
-                Evolución interna y externa
+                <ShinyText text="Evolución interna y externa"/>
               </div>
               <div className="leading-tight text-md md:text-lg text-gray-600 font-sans text-center font-semibold">
-                Eleva la humanidad a través de la curiosidad y la acción
+                <ShinyText text="Eleva la humanidad a través de la curiosidad y la acción"/>
               </div>
             </div>
           </div>
