@@ -83,7 +83,7 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
 
           <a
             className="group inline-flex items-center cursor-pointer gap-1 text-md md:text-base text-gray-600 hover:text-gray-900 hover:scale-105 transition duration-200 ease-out"
-            onClick={() => alert('de depente hay muchos feriados, ¿no?')}
+            onClick={() => alert('de repente hay muchos feriados, ¿no?')}
           >
             leer más
           </a>

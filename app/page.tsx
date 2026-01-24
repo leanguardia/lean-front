@@ -12,10 +12,12 @@ export default function Home() {
   const interests: LogoItem[] = [
     { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none ">Experimentación científica</span> },
     { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Inteligencia Artificial</span> },
+    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">STARTUPS</span> },
     { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">ANÁLISIS DE DATOS</span> },
     { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Ingeniería de software</span> },
     { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">blockchain y descentralización</span> },
-    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Pensamiento Probabilístico</span> },
+    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Mentalidad Probabilística</span> },
+    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Pensamiento Crítico</span> },
     { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Aprendizaje continuo</span> },
     { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Educación Orgánica</span> },
     { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Lectura y Escritura</span> },

@@ -18,15 +18,57 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "leancontinuo",
-  description: "knowledge, insights, and experiences",
-  keywords: ["knowledge", "insights", "experiences"],
-  authors: [{ name: "Leancontinuo", url: "https://leancontinuo.com" }],
-  creator: "Leancontinuo",
+  title: "Leancontinuo | Evolución interna y externa",
+  description:
+    "Evolución interna y externa, curiosidad y acción para elevar la humanidad. Leancontinuo es la ventana para conocer un apasionado por la evolución humana a través de la tecnología y la filosofía.",
+  keywords: [
+    "LeanContinuo",
+    "Lean Continuo",
+    "Aprendizaje Continuo",
+    "Lectura",
+    "Escritura",
+    "Tecnología",
+    "Mentalidad Probabilística",
+    "Filosofía",
+    "Inteligencia Artificial",
+    "Análisis de datos",
+    "Web3",
+    "Blockchain",
+    "Descentralización",
+  ],
+  authors: [{ name: "Leandro Guardia, Leancontinuo" }],
+  creator: "Leandro Guardia",
   publisher: "Leancontinuo",
+  robots: "index, follow",
+  alternates: {
+    canonical: "https://leancontinuo.com/",
+  },
   openGraph: {
     title: "Leancontinuo",
-    description: "knowledge, insights, and experiences",
+    description: "Evolución interna y externa, curiosidad y acción para elevar la humanidad.",
+    url: "https://leancontinuo.com/",
+    siteName: "Leancontinuo",
+    images: [
+      {
+        url: "https://leancontinuo.com/logomark.png",
+        alt: "Lean Continuo",
+      },
+    ],
+    locale: "es_BO",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@leancontinuo",
+    creator: "@leancontinuo",
+    title: "Leancontinuo",
+    description: "Evolución interna y externa, curiosidad y acción para elevar la humanidad.",
+    images: [
+      {
+        url: "https://leancontinuo.com/logomark.png",
+        alt: "Lean Continuo",
+      },
+    ],
   },
 };
 
