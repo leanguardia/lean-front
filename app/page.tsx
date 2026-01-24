@@ -6,7 +6,8 @@ import ProfileCard from '../components/ProfileCard';
 import ShinyText from '../components/ShinyText';
 import Iridescence from '../components/Iridescence';
 import ArticleCarousel, { type Article } from '../components/ArticleCarousel';
-import { FaLinkedin, FaXTwitter, FaGithub, FaInstagram } from 'react-icons/fa6';
+import Squares from '@/components/Squares';
+import { FaLinkedin, FaXTwitter, FaGithub, FaInstagram, FaVideo, FaPenToSquare, FaPodcast, FaTrophy } from 'react-icons/fa6';
 
 export default function Home() {
   const interests: LogoItem[] = [
@@ -135,7 +136,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Chat with me */}
+        {/* AI Chatbot */}
         <div className="col-span-1 row-span-2 md:col-span-4 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl flex-grow min-h-0">
             <ProfileCard
@@ -168,8 +169,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Blog */}
-        <div className="col-span-1 row-span-3 md:col-span-4 flex flex-col">
+        {/* Data */}
+        <div className="col-span-1 row-span-2 md:col-span-4 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl px-3 md:px-4 pb-2 flex-grow">
             {/* Gradient circle background */}
             <div
@@ -197,8 +198,8 @@ export default function Home() {
                 <div className="w-full h-full max-w-[420px] mx-auto aspect-[5/4] sm:aspect-[5/3] md:aspect-[5/2]">
                   <MagnetLines
                     containerSize="100%"
-                    rows={10}
-                    columns={6}
+                    rows={7}
+                    columns={7}
                     lineColor="var(--color-accent-light)"
                     lineHeight="min(7.5vw, 48px)"
                     lineWidth="min(1vw, 6px)"
@@ -210,7 +211,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* CTA */}
+        {/* Write me */}
         <div className="col-span-1 md:col-span-4 md:row-span-1 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl flex-grow bg-accent-light">
             <div className="relative flex flex-1 items-center justify-center">
@@ -234,7 +235,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Artículos Carousel */}
+        {/* Articles */}
         <div className="col-span-2 row-span-2 md:col-span-8 md:row-span-2 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl px-3 md:px-4 pb-2 flex-grow bg-white transition-shadow border-2 border-gray-500">
             <div className="relative z-10 flex flex-col h-full p-4 md:p-6">
@@ -243,20 +244,65 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Spotify */}
-        {/* <div className="col-span-2 md:col-span-7 md:row-span-1 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-4 pb-4 flex-grow bg-accent-light border-2 border-accent-light">
-            <div className="absolute inset-0 bg-accent-light"></div>
-            <div className="relative z-10 flex flex-row items-center justify-between h-full p-6">
-              <div>
-                <h3 className="text-2xl md:text-3xl font-serif text-gray-900 mb-2">Spotify</h3>
-                <p className="text-gray-800 text-sm">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
-              </div>
+        {/* External Resources */}
+        <div className="col-span-1 row-span-1 md:col-span-4 flex flex-col">
+          <div className="group relative flex flex-col overflow-hidden rounded-2xl flex-grow bg-accent">
+            <div className="absolute inset-0 w-full h-full z-0">
+              <Squares
+                direction="diagonal"
+                speed={0.2}
+                borderColor="#5AA0E6"
+                squareSize={49}
+              />
+            </div>
+            <div className="relative z-10 grid grid-cols-2 grid-rows-2 h-full w-full">
+              <a
+                href="https://www.linkedin.com/feed/update/urn:li:activity:7359280843640479744/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/link flex flex-col items-center justify-center gap-2"
+              >
+                <FaTrophy className="text-2xl md:text-3xl text-white group-hover/link:text-accent-light transition-all duration-300" />
+                <span className="text-xs md:text-sm text-white group-hover/link:text-accent-light font-sans leading-snug text-center px-2 transition-all duration-300">
+                  Buildathon Ethereum DeFi
+                </span>
+              </a>
+              <a
+                href="https://www.twitch.tv/videos/1559307063"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/link flex flex-col items-center justify-center gap-2"
+              >
+                <FaVideo className="text-2xl md:text-3xl text-white group-hover/link:text-accent-light transition-all duration-300" />
+                <span className="text-xs md:text-sm text-white group-hover/link:text-accent-light leading-snug text-center px-2 transition-all duration-300">
+                Tropiezos y fracasos como ingeniero
+                </span>
+              </a>
+              <a
+                href="https://10minds.org/equipo-efectivo/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/link flex flex-col items-center justify-center gap-2"
+              >
+                <FaPenToSquare className="text-2xl md:text-3xl text-white group-hover/link:text-accent-light transition-all duration-300" />
+                <span className="text-xs md:text-sm text-white group-hover/link:text-accent-light leading-snug text-center px-2 transition-all duration-300">
+                  Equipos súper efectivos
+                </span>
+              </a>
+              <a
+                href="https://open.spotify.com/episode/4e14GM4PlsroTX2CkElvSI?si=b6d029f75bfd4cac"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/link flex flex-col items-center justify-center gap-2"
+              >
+                <FaPodcast className="text-2xl md:text-3xl text-white group-hover/link:text-accent-light transition-all duration-300" />
+                <span className="text-xs md:text-sm text-white group-hover/link:text-accent-light leading-snug text-center px-2 transition-all duration-300">
+                  ¿Cómo ganar una beca?
+                </span>
+              </a>
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
 
       {/* Socials - Full Width Row */}
