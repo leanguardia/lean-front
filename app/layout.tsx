@@ -2,6 +2,7 @@ import "./globals.css";
 
 import { DM_Sans, Outfit } from "next/font/google";
 
+import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 
 const outfit = Outfit({
@@ -94,6 +95,7 @@ export default function RootLayout({
 
   return (
     <html lang="es">
+      <GoogleTagManager gtmId="GTM-K36SHWQQ" />
       <body
         className={`${outfit.variable} ${dmSans.variable} antialiased`}
       >
