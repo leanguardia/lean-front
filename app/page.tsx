@@ -212,7 +212,7 @@ export default function Home() {
         </div>
 
         {/* Write me */}
-        <div className="col-span-1 md:col-span-4 md:row-span-1 flex flex-col">
+        <div className="col-span-2 md:col-span-4 md:row-span-1 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl flex-grow bg-accent-light">
             <div className="relative flex flex-1 items-center justify-center">
               <Iridescence
@@ -245,7 +245,7 @@ export default function Home() {
         </div>
 
         {/* External Resources */}
-        <div className="col-span-1 row-span-1 md:col-span-4 flex flex-col">
+        <div className="col-span-2 row-span-1 md:col-span-4 flex flex-col">
           <div className="group relative flex flex-col overflow-hidden rounded-2xl flex-grow bg-accent">
             <div className="absolute inset-0 w-full h-full z-0">
               <Squares
@@ -275,7 +275,7 @@ export default function Home() {
               >
                 <FaVideo className="text-2xl md:text-3xl text-white group-hover/link:text-accent-light transition-all duration-300" />
                 <span className="text-xs md:text-sm text-white group-hover/link:text-accent-light leading-snug text-center px-2 transition-all duration-300">
-                Tropiezos y fracasos como ingeniero
+                Fracasos como ingeniero
                 </span>
               </a>
               <a
