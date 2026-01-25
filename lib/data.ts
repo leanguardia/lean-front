@@ -190,7 +190,7 @@ export const socialLinks: SocialLink[] = [
  * Calculate grid template rows based on isSquare property of images.
  * Groups images by rows (2 per row) and determines row height.
  */
-export function calculateGridTemplateRows(images: RelationImage[]): string {
+export function calculateGridTemplateRows(images: ExperienceImage[]): string {
   return Array.from({ length: images.length / 2 }, (_, rowIndex) => {
     const firstImageInRow = images[rowIndex * 2];
     return firstImageInRow.isSquare ? '1fr' : '0.65fr';
