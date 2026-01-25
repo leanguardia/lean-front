@@ -543,7 +543,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                   type="button"
                   className="w-full rounded-2xl px-4 py-3 text-center cursor-pointer bg-white/40 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.28)] transition duration-200 ease-out hover:bg-white/45 hover:border-white/30 hover:shadow-[0_12px_40px_rgba(0,0,0,0.32)] active:scale-[0.99]"
                   onClick={() => {
-                    alert('todo lo bueno viene despacio...');
+                    alert('todo lo bueno toma su tiempo...');
                   }}
                 >
                   <h3 className="m-0 font-sans font-semibold text-gray-700 leading-tight text-lg sm:text-xl">

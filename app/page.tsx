@@ -1,358 +1,281 @@
 import Image from 'next/image';
-import Logo from './components/Logo';
-import LogoLoop, { type LogoItem } from '../components/LogoLoop';
+import Logo from '@/app/components/Logo';
+import LogoLoop, { type LogoItem } from '@/components/LogoLoop';
 import MagnetLines from '@/components/MagnetLines';
-import ProfileCard from '../components/ProfileCard';
-import ShinyText from '../components/ShinyText';
-import Iridescence from '../components/Iridescence';
-import ArticleCarousel, { type Article } from '../components/ArticleCarousel';
+import ProfileCard from '@/components/ProfileCard';
+import ShinyText from '@/components/ShinyText';
+import Iridescence from '@/components/Iridescence';
+import ArticleCarousel from '@/components/ArticleCarousel';
 import Squares from '@/components/Squares';
-import { FaLinkedin, FaXTwitter, FaGithub, FaInstagram, FaVideo, FaPenToSquare, FaPodcast, FaTrophy } from 'react-icons/fa6';
+import GridCard from '@/components/GridCard';
+import {
+  interests,
+  experienceImages,
+  articles,
+  externalResources,
+  socialLinks,
+  calculateGridTemplateRows,
+} from '@/lib/data';
+
+// Transform string interests into LogoItems with consistent styling
+const interestItems: LogoItem[] = interests.map((text) => ({
+  node: (
+    <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">
+      {text}
+    </span>
+  ),
+}));
+
+const gridTemplateRows = calculateGridTemplateRows(experienceImages);
 
 export default function Home() {
-  const interests: LogoItem[] = [
-    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none ">Experimentación científica</span> },
-    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Inteligencia Artificial</span> },
-    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">STARTUPS</span> },
-    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">ANÁLISIS DE DATOS</span> },
-    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Ingeniería de software</span> },
-    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">blockchain y descentralización</span> },
-    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Mentalidad Probabilística</span> },
-    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Pensamiento Crítico</span> },
-    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Aprendizaje continuo</span> },
-    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Educación Orgánica</span> },
-    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Lectura y Escritura</span> },
-    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Filosofía ecléctica</span> },
-    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Cultura humanista</span> },
-    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Leyes de la naturaleza</span> },
-    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Arte y diseño visual</span> },
-    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Música y Mezcla Deejay</span> },
-    { node: <span className="text-gray-800 uppercase font-semibold text-lg md:text-xl lg:text-2xl leading-none">Autoconocimiento y expansión</span> },
-  ];
-
-  const relationsImages = [
-    { src: '/images/relations/university-of-bristol.png', alt: 'University of Bristol', isSquare: false, url: 'https://www.bristol.ac.uk/science-engineering/' },
-    { src: '/images/relations/toptal.png', alt: 'Toptal', isSquare: false, url: 'https://www.toptal.com/developers/resume/leandro-guardia' },
-    { src: '/images/relations/chevening.png', alt: 'Chevening', isSquare: true, url: 'https://www.chevening.org/' },
-    { src: '/images/relations/ucb.png', alt: 'UCB', isSquare: true, url: 'https://cba.ucb.edu.bo/' },
-    { src: '/images/relations/elgeniox.png', alt: 'Elgeniox', isSquare: false, url: 'https://elgeniox.com/' },
-    { src: '/images/relations/nueva-acropolis.png', alt: 'Nueva Acropolis', isSquare: false, url: 'https://acropolis.org.bo/' },
-    { src: '/images/relations/caff.png', alt: 'CAFF', isSquare: true, url: 'https://froebel.edu.bo/' },
-    { src: '/images/relations/afs.png', alt: 'AFS', isSquare: true, url: 'https://www.afs.de/' },
-  ];
-
-  // Calculate grid template rows based on isSquare property
-  // Group images by rows (2 per row) and determine row height
-  const gridTemplateRows = Array.from({ length: relationsImages.length / 2 }, (_, rowIndex) => {
-    const firstImageInRow = relationsImages[rowIndex * 2];
-    // If the first image in the row is square, use 1fr, otherwise 0.65fr for horizontal
-    return firstImageInRow.isSquare ? '1fr' : '0.65fr';
-  }).join(' ');
-
-  const articles: Article[] = [
-    {
-      title: 'Todo comienza con tus valores',
-      excerpt: 'Si prestas atención, todos exponemos nuestros valores continuamente…',
-      image: '/images/articles/valores.jpeg',
-    },
-    {
-      title: 'Leer',
-      excerpt: 'Te encuentras en una isla. La brisa es lenta y cálida, acaricia tu piel y se siente familiar…',
-      image: '/images/articles/leer.jpeg',
-    },
-    {
-      title: 'Síndrome del impostor',
-      excerpt: 'Mike, el cofundador de Atlassian y representante de Australia en el evento World Entrepreneur…',
-      image: '/images/articles/imposter.jpeg',
-    },
-    {
-      title: 'Tecnología',
-      excerpt: 'El camino de tierra era irregular, estaba marcado por huellas de caballo y ruedas de carrozas arrastradas…',
-      image: '/images/articles/tecnologia.jpeg',
-    },
-  ];
-
   return (
     <div className="my-1 py-3 px-2 md:py-4 md:px-4 mx-auto min-h-screen bg-background">
       <div className="grid grid-cols-2 md:grid-cols-12 gap-2 sm:gap-3 md:gap-4 auto-rows-[210px] min-h-screen">
 
         {/* Hero */}
-        <div className="col-span-2 md:col-span-3 lg:col-span-2 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-xl px-3 md:px-4 flex-grow flex items-center justify-center">
-            <div className="relative z-10 flex items-center justify-center h-full w-full">
-              <Logo className="h-full" />
-            </div>
+        <GridCard
+          colSpan="col-span-2 md:col-span-3 lg:col-span-2"
+          padding="px-3 md:px-4"
+          className="flex items-center justify-center"
+        >
+          <div className="relative z-10 flex items-center justify-center h-full w-full">
+            <Logo className="h-full" />
           </div>
-        </div>
+        </GridCard>
 
         {/* Bio */}
-        <div className="col-span-2 md:col-span-5 lg:col-span-6 md:row-span-1 flex flex-col">
-          <div
-            className="group relative flex flex-col overflow-hidden rounded-xl px-0 md:px-4 flex-grow hover:scale-98 transition-all duration-300 shadow-md hover:shadow-none"
-            style={{
-              backgroundImage: "url('/white-marble-texture-bg.jpg')",
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              backgroundColor: '#A5D8FF'
-            }}
-          >
-            <div className="relative z-10 flex flex-col h-full p-4 md:p-6 items-center justify-center rounded-xl">
-              <div className="text-4xl lg:text-5xl font-serif font-semibold text-gray-800 mb-3">
-                <ShinyText text="leancontinuo"/>
-              </div>
-              <div className="text-2xl text-gray-700 font-sans leading-tight text-center font-semibold pb-1">
-                <ShinyText text="evolución interna y externa"/>
-              </div>
-              <div className="text-lg text-gray-600 font-sans leading-tight text-center font-semibold">
-                <ShinyText text="curiosidad y acción para elevar la humanidad"/>
-              </div>
+        <GridCard
+          colSpan="col-span-2 md:col-span-5 lg:col-span-6"
+          rowSpan="md:row-span-1"
+          padding="px-0 md:px-4"
+          className="hover:scale-98 transition-all duration-300 shadow-md hover:shadow-none"
+          style={{
+            backgroundImage: "url('/white-marble-texture-bg.jpg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: 'var(--primary)',
+          }}
+        >
+          <div className="relative z-10 flex flex-col h-full p-4 md:p-6 items-center justify-center rounded-xl">
+            <div className="text-4xl lg:text-5xl font-serif font-semibold text-gray-800 mb-3">
+              <ShinyText text="leancontinuo"/>
+            </div>
+            <div className="text-2xl text-gray-700 font-sans leading-tight text-center font-semibold pb-1">
+              <ShinyText text="evolución interna y externa"/>
+            </div>
+            <div className="text-lg text-gray-600 font-sans leading-tight text-center font-semibold">
+              <ShinyText text="curiosidad y acción para elevar la humanidad"/>
             </div>
           </div>
-        </div>
+        </GridCard>
 
-        {/* Experiences - */}
-        <div className="col-span-1 row-span-3 md:col-span-4 md:row-span-3 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-xl px-3 md:px-4 pb-0 md:pb-4 flex-grow bg-secondary border-2 border-secondary">
-            <div className="relative z-10 flex flex-col h-full px-1 py-3 md:py-4 lg:p-6">
-              <h3 className="text-md md:text-xl font-serif font-light text-gray-900 mb-2 md:mb-0">
-                E X P E R I E N C I A
-              </h3>
-              <div 
-                className="grid grid-cols-2 gap-x-0 lg:gap-x-2 xl:gap-x-8 rounded-lg flex-1"
-                style={{ gridTemplateRows: gridTemplateRows }}
-              >
-                {relationsImages.map((image, index) => (
-                  <a
-                    key={index}
-                    href={image.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-secondary hover:bg-neutral-100 rounded-xl flex items-center justify-center p-1 sm:p-2 m-0 sm:m-1 transition-all duration-300 ease-out cursor-pointer overflow-hidden hover:scale-105"
-                  >
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      width={image.isSquare ? 160 : 260}
-                      height={image.isSquare ? 160 : 80}
-                      className="w-full h-full object-contain p-0"
-                      sizes="(max-width: 180px) 100vw, 50vw"
-                    />
-                  </a>
-                ))}
-              </div>
+        {/* Experience */}
+        <GridCard
+          colSpan="col-span-1 md:col-span-4"
+          rowSpan="row-span-3 md:row-span-3"
+          bg="bg-secondary"
+          border="border-2 border-secondary"
+          padding="px-3 md:px-4 pb-0 md:pb-4"
+        >
+          <div className="relative z-10 flex flex-col h-full px-1 py-3 md:py-4 lg:p-6">
+            <h3 className="text-md md:text-xl font-serif font-light text-gray-900 mb-2 md:mb-0">
+              E X P E R I E N C I A
+            </h3>
+            <div 
+              className="grid grid-cols-2 gap-x-0 lg:gap-x-2 xl:gap-x-8 rounded-lg flex-1"
+              style={{ gridTemplateRows: gridTemplateRows }}
+            >
+              {experienceImages.map((image, index) => (
+                <a
+                  key={index}
+                  href={image.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-secondary hover:bg-neutral-100 rounded-xl flex items-center justify-center p-1 sm:p-2 m-0 sm:m-1 transition-all duration-300 ease-out cursor-pointer overflow-hidden hover:scale-105"
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={image.isSquare ? 160 : 260}
+                    height={image.isSquare ? 160 : 80}
+                    className="w-full h-full object-contain p-0"
+                    sizes="(max-width: 180px) 100vw, 50vw"
+                  />
+                </a>
+              ))}
             </div>
           </div>
-        </div>
+        </GridCard>
 
         {/* AI Chatbot */}
-        <div className="col-span-1 row-span-2 md:col-span-4 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-xl flex-grow min-h-0">
-            <ProfileCard
-              avatarUrl="/images/lean.png"
-              name="Artificial Lean"
-              title="chat with me"
-              className="flex-1 min-h-0"
-            />
-          </div>
-        </div>
+        <GridCard
+          colSpan="col-span-1 md:col-span-4"
+          rowSpan="row-span-2"
+          className="min-h-0"
+        >
+          <ProfileCard
+            avatarUrl="/images/lean.png"
+            name="Artificial Lean"
+            title="chat with me"
+            className="flex-1 min-h-0"
+          />
+        </GridCard>
 
         {/* Interests */}
-        <div className="col-span-1 row-span-3 md:col-span-4 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-xl px-0 md:px-1 lg:px-4 pb-0 md:pb-4 flex-grow bg-white border-2 border-gray-500">
-            <div className="relative z-10 flex flex-col h-full p-4 md:p-6">
-              <h3 className="text-md md:text-xl font-serif font-light text-gray-900 mb-4">I N T E R E S E S</h3>
-              <LogoLoop
-                logos={interests}
-                direction="up"
-                speed={33}
-                hoverSpeed={99}
-                logoHeight={18}
-                gap={10}
-                ariaLabel="Interests"
-                fadeOut
-                fadeOutColor="var(--color-white)"
-                className="h-full"
-              />
-            </div>
+        <GridCard
+          colSpan="col-span-1 md:col-span-4"
+          rowSpan="row-span-3"
+          bg="bg-white"
+          border="border-2 border-gray-500"
+          padding="px-0 md:px-1 lg:px-4 pb-0 md:pb-4"
+        >
+          <div className="relative z-10 flex flex-col h-full p-4 md:p-6">
+            <h3 className="text-md md:text-xl font-serif font-light text-gray-900 mb-4">I N T E R E S E S</h3>
+            <LogoLoop
+              logos={interestItems}
+              direction="up"
+              speed={33}
+              hoverSpeed={99}
+              logoHeight={18}
+              gap={10}
+              ariaLabel="Interests"
+              fadeOut
+              fadeOutColor="var(--color-white)"
+              className="h-full"
+            />
           </div>
-        </div>
+        </GridCard>
 
         {/* Data */}
-        <div className="col-span-1 row-span-2 md:col-span-4 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-xl px-3 md:px-4 pb-2 flex-grow">
-            {/* Gradient circle background */}
+        <GridCard
+          colSpan="col-span-1 md:col-span-4"
+          rowSpan="row-span-2"
+          padding="px-3 md:px-4 pb-2"
+        >
+          {/* Gradient circle background */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          >
             <div
-              aria-hidden="true"
-              className="absolute inset-0 flex items-center justify-center pointer-events-none"
-            >
-              <div
-                className="z-0"
-                style={{
-                  position: 'absolute',
-                  width: '100%',
-                  height: '100%',
-                  background:
-                    'radial-gradient(circle, var(--color-accent) 0%, var(--color-secondary) 100%)',
-                  opacity: 0.75,
-                }}
-              />
-            </div>
-            <div className="relative z-10 flex flex-col h-full p-2 md:p-3 xl:p-6">
-              <h3 className="text-md md:text-xl font-serif text-gray-900 mb-6">
-                D A T O S
-                <span className="text-gray-600 font-serif text-sm inline-block ml-1 md:ml-2">próximamente</span>
-              </h3>
-              <div className="flex-1 flex items-center justify-center">
-                <div className="w-full h-full max-w-[420px] mx-auto aspect-[5/4] sm:aspect-[5/3] md:aspect-[5/2]">
-                  <MagnetLines
-                    containerSize="100%"
-                    rows={7}
-                    columns={7}
-                    lineColor="var(--color-accent-light)"
-                    lineHeight="min(7.5vw, 48px)"
-                    lineWidth="min(1vw, 6px)"
-                    className="w-full h-full"
-                  />
-                </div>
+              className="z-0 absolute w-full h-full opacity-75"
+              style={{
+                background: 'radial-gradient(circle, var(--color-accent) 0%, var(--color-secondary) 100%)',
+              }}
+            />
+          </div>
+          <div className="relative z-10 flex flex-col h-full p-2 md:p-3 xl:p-6">
+            <h3 className="text-md md:text-xl font-serif text-gray-900 mb-6">
+              D A T O S
+              <span className="text-gray-600 font-serif text-sm inline-block ml-1 md:ml-2">
+                próximamente
+              </span>
+            </h3>
+            <div className="flex-1 flex items-center justify-center">
+              <div className="w-full h-full max-w-[420px] mx-auto aspect-[5/4] sm:aspect-[5/3] md:aspect-[5/2]">
+                <MagnetLines
+                  containerSize="100%"
+                  rows={7}
+                  columns={7}
+                  lineColor="var(--color-accent-light)"
+                  lineHeight="min(7.5vw, 48px)"
+                  lineWidth="min(1vw, 6px)"
+                  className="w-full h-full"
+                />
               </div>
             </div>
           </div>
-        </div>
+        </GridCard>
 
-        {/* Write me */}
-        <div className="col-span-2 md:col-span-4 md:row-span-1 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-xl flex-grow bg-accent-light">
-            <div className="relative flex flex-1 items-center justify-center">
-              <Iridescence
-                color={[0.3,0.7,0.8]}
-                mouseReact={false}
-                amplitude={0.1}
-                speed={0.4}
-                className="absolute inset-0 w-full h-full"
-              />
-              
-              <a
-                href="https://t.me/leanguardia"
-                target="_blank"
-                aria-label="Escribeme en Telegram"
-                className="relative z-10 text-white rounded-full text-xl opacity-85 font-bold hover:scale-140 hover:opacity-100 transition duration-300"
-              >
-                E S C R Í B E M E
-              </a>
-            </div>
+        {/* Contact me */}
+        <GridCard
+          colSpan="col-span-2 md:col-span-4"
+          rowSpan="md:row-span-1"
+          bg="bg-accent-light"
+        >
+          <div className="relative flex flex-1 items-center justify-center">
+            <Iridescence
+              color={[0.3, 0.7, 0.8]}
+              mouseReact={false}
+              amplitude={0.1}
+              speed={0.4}
+              className="absolute inset-0 w-full h-full"
+            />
+            <a
+              href="https://t.me/leanguardia"
+              target="_blank"
+              aria-label="Escribeme en Telegram"
+              className="relative z-10 text-white rounded-full text-xl opacity-85 font-bold hover:scale-140 hover:opacity-100 transition duration-300"
+            >
+              E S C R Í B E M E
+            </a>
           </div>
-        </div>
+        </GridCard>
 
         {/* Articles */}
-        <div className="col-span-2 row-span-2 md:col-span-8 md:row-span-2 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-xl px-3 md:px-4 pb-2 flex-grow bg-white transition-shadow border-2 border-gray-500">
-            <div className="relative z-10 flex flex-col h-full p-4 md:p-6">
-              <ArticleCarousel articles={articles} />
-            </div>
+        <GridCard
+          colSpan="col-span-2 md:col-span-8"
+          rowSpan="row-span-2 md:row-span-2"
+          bg="bg-white"
+          border="border-2 border-gray-500"
+          padding="px-3 md:px-4 pb-2"
+          className="transition-shadow"
+        >
+          <div className="relative z-10 flex flex-col h-full p-4 md:p-6">
+            <ArticleCarousel articles={articles} />
           </div>
-        </div>
+        </GridCard>
 
         {/* External Resources */}
-        <div className="col-span-2 row-span-1 md:col-span-4 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-xl flex-grow bg-accent">
-            <div className="absolute inset-0 w-full h-full z-0">
-              <Squares
-                direction="diagonal"
-                speed={0.3}
-                borderColor="#5AA0E6"
-                squareSize={49}
-              />
-            </div>
-            <div className="relative z-10 grid grid-cols-2 grid-rows-2 h-full w-full">
-              <a
-                href="https://www.linkedin.com/feed/update/urn:li:activity:7359280843640479744/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group/link flex flex-col items-center justify-center gap-2"
-              >
-                <FaTrophy className="text-2xl md:text-3xl text-white group-hover/link:text-accent-light transition-all duration-300" />
-                <span className="text-xs md:text-sm text-white group-hover/link:text-accent-light font-sans leading-snug text-center px-2 transition-all duration-300">
-                  Buildathon Ethereum DeFi
-                </span>
-              </a>
-              <a
-                href="https://www.twitch.tv/videos/1559307063"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group/link flex flex-col items-center justify-center gap-2"
-              >
-                <FaVideo className="text-2xl md:text-3xl text-white group-hover/link:text-accent-light transition-all duration-300" />
-                <span className="text-xs md:text-sm text-white group-hover/link:text-accent-light leading-snug text-center px-2 transition-all duration-300">
-                Fracasos como ingeniero
-                </span>
-              </a>
-              <a
-                href="https://10minds.org/equipo-efectivo/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group/link flex flex-col items-center justify-center gap-2"
-              >
-                <FaPenToSquare className="text-2xl md:text-3xl text-white group-hover/link:text-accent-light transition-all duration-300" />
-                <span className="text-xs md:text-sm text-white group-hover/link:text-accent-light leading-snug text-center px-2 transition-all duration-300">
-                  Equipos súper efectivos
-                </span>
-              </a>
-              <a
-                href="https://open.spotify.com/episode/4e14GM4PlsroTX2CkElvSI?si=b6d029f75bfd4cac"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group/link flex flex-col items-center justify-center gap-2"
-              >
-                <FaPodcast className="text-2xl md:text-3xl text-white group-hover/link:text-accent-light transition-all duration-300" />
-                <span className="text-xs md:text-sm text-white group-hover/link:text-accent-light leading-snug text-center px-2 transition-all duration-300">
-                  ¿Cómo ganar una beca?
-                </span>
-              </a>
-            </div>
+        <GridCard
+          colSpan="col-span-2 md:col-span-4"
+          rowSpan="row-span-1"
+          bg="bg-accent"
+        >
+          <div className="absolute inset-0 w-full h-full z-0">
+            <Squares
+              direction="diagonal"
+              speed={0.3}
+              borderColor="#A5D8FF"
+              squareSize={49}
+            />
           </div>
-        </div>
+          <div className="relative z-10 grid grid-cols-2 grid-rows-2 h-full w-full">
+            {externalResources.map((resource) => (
+              <a
+                key={resource.href}
+                href={resource.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/link flex flex-col items-center justify-center gap-2"
+              >
+                <resource.icon className="text-2xl md:text-3xl text-white group-hover/link:text-accent-light transition-all duration-300" />
+                <span className="text-xs md:text-sm text-white group-hover/link:text-accent-light font-sans leading-snug text-center px-2 transition-all duration-300">
+                  {resource.label}
+                </span>
+              </a>
+            ))}
+          </div>
+        </GridCard>
       </div>
 
-      {/* Socials - Full Width Row */}
+      {/* Footer - Socials */}
       <div className="w-full pt-4 md:pt-6 pb-2 px-3 md:px-4">
         <div className="flex items-center justify-center gap-6">
-          <a
-            href="https://www.linkedin.com/in/leandro-guardia"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-all duration-300 hover:scale-114 text-gray-800 hover:text-gray-600"
-            aria-label="LinkedIn"
-          >
-            <FaLinkedin className="w-6 h-6" />
-          </a>
-          <a
-            href="https://x.com/leancontinuo"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-all duration-300 hover:scale-114 text-gray-800 hover:text-gray-600"
-            aria-label="X (Twitter)"
-          >
-            <FaXTwitter className="w-6 h-6" />
-          </a>
-          <a
-            href="https://github.com/leanguardia"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-all duration-300 hover:scale-114 text-gray-800 hover:text-gray-600"
-            aria-label="GitHub"
-          >
-            <FaGithub className="w-6 h-6" />
-          </a>
-          <a
-            href="https://www.instagram.com/leancontinuo"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-all duration-300 hover:scale-114 text-gray-800 hover:text-gray-600"
-            aria-label="Instagram"
-          >
-            <FaInstagram className="w-6 h-6" />
-          </a>
+          {socialLinks.map((social) => (
+            <a
+              key={social.href}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-all duration-300 hover:scale-114 text-gray-800 hover:text-gray-600"
+              aria-label={social.label}
+            >
+              <social.icon className="w-6 h-6" />
+            </a>
+          ))}
         </div>
       </div>
     </div>
