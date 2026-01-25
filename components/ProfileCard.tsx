@@ -326,7 +326,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
     handleDeviceOrientation
   ]);
 
-  const cardRadius = '24px';
+  const cardRadius = '16px';
 
   const cardStyle = useMemo(
     () => ({

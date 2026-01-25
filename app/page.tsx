@@ -74,11 +74,11 @@ export default function Home() {
 
   return (
     <div className="my-1 py-3 px-2 md:py-4 md:px-4 mx-auto min-h-screen bg-background">
-      <div className="grid grid-cols-2 md:grid-cols-12 gap-2 md:gap-3 auto-rows-[210px] min-h-screen">
+      <div className="grid grid-cols-2 md:grid-cols-12 gap-2 sm:gap-3 md:gap-4 auto-rows-[210px] min-h-screen">
 
         {/* Hero */}
         <div className="col-span-2 md:col-span-3 lg:col-span-2 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-3 md:px-4 flex-grow flex items-center justify-center">
+          <div className="group relative flex flex-col overflow-hidden rounded-xl px-3 md:px-4 flex-grow flex items-center justify-center">
             <div className="relative z-10 flex items-center justify-center h-full w-full">
               <Logo className="h-full" />
             </div>
@@ -87,8 +87,17 @@ export default function Home() {
 
         {/* Bio */}
         <div className="col-span-2 md:col-span-5 lg:col-span-6 md:row-span-1 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-0 md:px-4 flex-grow bg-primary border-2 border-primary">
-            <div className="relative z-10 flex flex-col h-full p-4 md:p-6 items-center justify-center">
+          <div
+            className="group relative flex flex-col overflow-hidden rounded-xl px-0 md:px-4 flex-grow hover:scale-98 transition-all duration-300 shadow-md hover:shadow-none"
+            style={{
+              backgroundImage: "url('/white-marble-texture-bg.jpg')",
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              backgroundColor: '#A5D8FF'
+            }}
+          >
+            <div className="relative z-10 flex flex-col h-full p-4 md:p-6 items-center justify-center rounded-xl">
               <div className="text-4xl lg:text-5xl font-serif font-semibold text-gray-800 mb-3">
                 <ShinyText text="leancontinuo"/>
               </div>
@@ -104,7 +113,7 @@ export default function Home() {
 
         {/* Experiences - */}
         <div className="col-span-1 row-span-3 md:col-span-4 md:row-span-3 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-3 md:px-4 pb-0 md:pb-4 flex-grow bg-secondary border-2 border-secondary">
+          <div className="group relative flex flex-col overflow-hidden rounded-xl px-3 md:px-4 pb-0 md:pb-4 flex-grow bg-secondary border-2 border-secondary">
             <div className="relative z-10 flex flex-col h-full px-1 py-3 md:py-4 lg:p-6">
               <h3 className="text-md md:text-xl font-serif font-light text-gray-900 mb-2 md:mb-0">
                 E X P E R I E N C I A
@@ -119,7 +128,7 @@ export default function Home() {
                     href={image.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-secondary hover:bg-neutral-100 rounded-xl flex items-center justify-center p-2 m-1 transition-all duration-300 ease-out cursor-pointer overflow-hidden hover:scale-105"
+                    className="bg-secondary hover:bg-neutral-100 rounded-xl flex items-center justify-center p-1 sm:p-2 m-0 sm:m-1 transition-all duration-300 ease-out cursor-pointer overflow-hidden hover:scale-105"
                   >
                     <Image
                       src={image.src}
@@ -138,7 +147,7 @@ export default function Home() {
 
         {/* AI Chatbot */}
         <div className="col-span-1 row-span-2 md:col-span-4 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl flex-grow min-h-0">
+          <div className="group relative flex flex-col overflow-hidden rounded-xl flex-grow min-h-0">
             <ProfileCard
               avatarUrl="/images/lean.png"
               name="Artificial Lean"
@@ -150,7 +159,7 @@ export default function Home() {
 
         {/* Interests */}
         <div className="col-span-1 row-span-3 md:col-span-4 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-0 md:px-1 lg:px-4 pb-0 md:pb-4 flex-grow bg-white border-2 border-gray-500">
+          <div className="group relative flex flex-col overflow-hidden rounded-xl px-0 md:px-1 lg:px-4 pb-0 md:pb-4 flex-grow bg-white border-2 border-gray-500">
             <div className="relative z-10 flex flex-col h-full p-4 md:p-6">
               <h3 className="text-md md:text-xl font-serif font-light text-gray-900 mb-4">I N T E R E S E S</h3>
               <LogoLoop
@@ -171,7 +180,7 @@ export default function Home() {
 
         {/* Data */}
         <div className="col-span-1 row-span-2 md:col-span-4 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-3 md:px-4 pb-2 flex-grow">
+          <div className="group relative flex flex-col overflow-hidden rounded-xl px-3 md:px-4 pb-2 flex-grow">
             {/* Gradient circle background */}
             <div
               aria-hidden="true"
@@ -213,7 +222,7 @@ export default function Home() {
 
         {/* Write me */}
         <div className="col-span-2 md:col-span-4 md:row-span-1 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl flex-grow bg-accent-light">
+          <div className="group relative flex flex-col overflow-hidden rounded-xl flex-grow bg-accent-light">
             <div className="relative flex flex-1 items-center justify-center">
               <Iridescence
                 color={[0.3,0.7,0.8]}
@@ -237,7 +246,7 @@ export default function Home() {
 
         {/* Articles */}
         <div className="col-span-2 row-span-2 md:col-span-8 md:row-span-2 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl px-3 md:px-4 pb-2 flex-grow bg-white transition-shadow border-2 border-gray-500">
+          <div className="group relative flex flex-col overflow-hidden rounded-xl px-3 md:px-4 pb-2 flex-grow bg-white transition-shadow border-2 border-gray-500">
             <div className="relative z-10 flex flex-col h-full p-4 md:p-6">
               <ArticleCarousel articles={articles} />
             </div>
@@ -246,11 +255,11 @@ export default function Home() {
 
         {/* External Resources */}
         <div className="col-span-2 row-span-1 md:col-span-4 flex flex-col">
-          <div className="group relative flex flex-col overflow-hidden rounded-2xl flex-grow bg-accent">
+          <div className="group relative flex flex-col overflow-hidden rounded-xl flex-grow bg-accent">
             <div className="absolute inset-0 w-full h-full z-0">
               <Squares
                 direction="diagonal"
-                speed={0.2}
+                speed={0.3}
                 borderColor="#5AA0E6"
                 squareSize={49}
               />
