@@ -70,7 +70,7 @@ export const experienceImages: ExperienceImage[] = [
     src: '/images/relations/toptal.png',
     alt: 'Toptal',
     isSquare: false,
-    url: 'https://www.toptal.com/developers/resume/leandro-guardia',
+    url: 'https://www.toptal.com/developers/resume/leandro-guardia#Nd8YLd',
   },
   {
     src: '/images/relations/chevening.png',
