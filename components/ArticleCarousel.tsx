@@ -57,7 +57,7 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
   return (
     <div className="h-full flex flex-col">
       {/* Header with navigation */}
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between border-b-2 border-gray-500 px-3 md:px-4 py-3 md:py-4">
         <h3 className="text-md md:text-xl font-serif font-light text-gray-900">
           A R T Í C U L O S
         </h3>
@@ -100,35 +100,39 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
           {pages.map((page, pageIdx) => (
             <div
               key={pageIdx}
-              className="w-full flex-none grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-3 md:gap-4 h-full"
+              className="w-full flex-none grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 h-full [&>*:not(:last-child)]:border-r-2 [&>*:not(:last-child)]:border-gray-500"
             >
               {page.map((article, idx) => (
                 <button
                   key={`${pageIdx}-${idx}`}
                   type="button"
                   onClick={() => alert('¿en verdad ibas a leer el artículo?')}
-                  className="group relative overflow-hidden rounded-lg bg-white border border-gray-200 flex flex-col text-left cursor-pointer transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md hover:border-gray-300"
+                  className="group/article relative overflow-hidden bg-white flex flex-col text-left cursor-pointer transition-all duration-200 ease-out"
                 >
                   {/* Image section */}
-                  <div className="relative h-3/5 w-full">
+                  <div className="relative h-4/5 w-full">
                     <Image
                       src={article.image}
                       alt={article.title}
                       fill
-                      className="object-cover transition-transform duration-200 ease-out group-hover:scale-[1.02]"
+                      className="object-cover border-gray-500"
                       sizes="(max-width: 768px) 100vw, 50vw"
                       priority={pageIdx === 0 && idx === 0}
                     />
+                    {/* Excerpt overlay on hover */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/article:opacity-100 transition-opacity duration-200 ease-out">
+                      <div className="absolute inset-0 bg-white/82"></div>
+                      <p className="relative z-10 text-gray-700 text-base px-4 md:px-6 line-clamp-4 text-center font-sans">
+                        {article.excerpt}
+                      </p>
+                    </div>
                   </div>
 
                   {/* Content section */}
-                  <div className="h-2/5 bg-white p-4 md:p-5 flex flex-col">
-                    <h4 className="text-lg md:text-xl font-serif font-semibold text-gray-700 mb-2 line-clamp-2">
+                  <div className="h-1/5 bg-white px-4 md:px-5 flex flex-col justify-center">
+                    <h4 className="text-md md:text-lg font-serif font-semibold text-gray-600 line-clamp-2 group-hover/article:scale-103 group-hover/article:text-right group-hover/article:text-gray-800 transition-all duration-200 ease-out">
                       {article.title}
                     </h4>
-                    <p className="text-gray-700 text-sm md:text-base line-clamp-3 flex-1">
-                      {article.excerpt}
-                    </p>
                   </div>
                 </button>
               ))}

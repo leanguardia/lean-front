@@ -220,10 +220,9 @@ export default function Home() {
           rowSpan="row-span-2 md:row-span-2"
           bg="bg-white"
           border="border-2 border-gray-500"
-          padding="px-3 md:px-4 pb-2"
           className="transition-shadow"
         >
-          <div className="relative z-10 flex flex-col h-full p-4 md:p-6">
+          <div className="relative z-10 flex flex-col h-full">
             <ArticleCarousel articles={articles} />
           </div>
         </GridCard>
@@ -233,6 +232,7 @@ export default function Home() {
           colSpan="col-span-2 md:col-span-4"
           rowSpan="row-span-1"
           bg="bg-accent"
+          className="shadow-[inset_0_0_14px_rgba(0,0,0,0.3)] hover:shadow-none"
         >
           <div className="absolute inset-0 w-full h-full z-0">
             <Squares
@@ -251,8 +251,8 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="group/link flex flex-col items-center justify-center gap-2"
               >
-                <resource.icon className="text-2xl md:text-3xl text-white group-hover/link:text-accent-light transition-all duration-300" />
-                <span className="text-xs md:text-sm text-white group-hover/link:text-accent-light font-sans leading-snug text-center px-2 transition-all duration-300">
+                <resource.icon className="text-lg md:text-xl text-white group-hover/link:text-accent-light transition-all duration-300" />
+                <span className="text-xs lg:text-sm text-white group-hover/link:text-accent-light leading-snug text-center px-2 transition-all duration-300">
                   {resource.label}
                 </span>
               </a>

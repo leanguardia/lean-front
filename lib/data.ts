@@ -148,7 +148,7 @@ export const externalResources: ExternalResource[] = [
     label: 'Fracasos como ingeniero',
   },
   {
-    href: 'https://10minds.org/equipo-efectivo/',
+    href: 'https://10minds.org/blog/equipo-efectivo',
     icon: FaPenToSquare,
     label: 'Equipos súper efectivos',
   },
