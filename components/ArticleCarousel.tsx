@@ -66,7 +66,7 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
             <button
               onClick={prevSlide}
               disabled={currentIndex === 0}
-              className="p-2 rounded-lg bg-white cursor-pointer hover:scale-120 transition-colors disabled:opacity-40 disabled:scale-100"
+              className="p-2 rounded-lg cursor-pointer hover:scale-120 transition-colors disabled:opacity-40 disabled:scale-100"
               aria-label="Previous article"
             >
               <FaArrowLeftLong className="w-4 h-4 text-gray-600" />
@@ -74,7 +74,7 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
             <button
               onClick={nextSlide}
               disabled={currentIndex >= maxIndex}
-              className="p-2 rounded-lg bg-white cursor-pointer hover:scale-120 transition-colors disabled:opacity-40 disabled:scale-100"
+              className="p-2 rounded-lg cursor-pointer hover:scale-120 transition-colors disabled:opacity-40 disabled:scale-100"
               aria-label="Next article"
             >
               <FaArrowRightLong className="w-4 h-4 text-gray-600" />
@@ -130,7 +130,7 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
 
                   {/* Content section */}
                   <div className="h-1/5 bg-white px-4 md:px-5 flex flex-col justify-center">
-                    <h4 className="text-md md:text-lg font-serif font-semibold text-gray-600 line-clamp-2 group-hover/article:scale-103 group-hover/article:text-right group-hover/article:text-gray-800 transition-all duration-200 ease-out">
+                    <h4 className="text-md md:text-lg font-serif font-semibold text-gray-600 leading-tight line-clamp-2 group-hover/article:scale-103 group-hover/article:text-right group-hover/article:text-gray-800 transition-all duration-200 ease-out">
                       {article.title}
                     </h4>
                   </div>

@@ -40,22 +40,24 @@ export interface SocialLink {
 // ============================================================================
 
 export const interests: string[] = [
-  'Experimentación científica',
-  'Inteligencia Artificial',
+  'IA',
   'Startups',
+  'Automatización',
   'Análisis de datos',
+  'Método científico',
+  'Mente Probabilística',
   'Ingeniería de software',
   'Blockchain y descentralización',
-  'Mentalidad Probabilística',
-  'Pensamiento Crítico',
   'Aprendizaje continuo',
+  'Pensamiento Crítico',
   'Educación Orgánica',
-  'Lectura y Escritura',
-  'Filosofía ecléctica',
-  'Cultura humanista',
+  'Artes',
+  'Leer',
+  'Escribir',
+  'Filosofía',
+  'Humanidad',
+  'Eclecticismo',
   'Leyes de la naturaleza',
-  'Arte y diseño visual',
-  'Música y Mezcla Deejay',
   'Autoconocimiento y expansión',
 ];
 
