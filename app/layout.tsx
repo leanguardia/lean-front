@@ -101,7 +101,15 @@ export default function RootLayout({
         className={`${outfit.variable} ${dmSans.variable} antialiased`}
       >
         <div className="page-loader" aria-hidden="true">
-          <div className="loader" aria-label="Cargando" role="status" />
+          <div className="loader" aria-label="Cargando" role="status">
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
         </div>
         {children}
         {showBreakpointIndicator ? <BreakpointIndicator /> : null}

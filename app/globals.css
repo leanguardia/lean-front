@@ -71,16 +71,18 @@ body {
   }
 }
 
-/* Lightweight centered loader */
+/* Sinoidal Waves loader */
 .page-loader {
   position: fixed;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--background);
+  background: #F8F9FA;
   z-index: 50;
-  transition: opacity 0.3s ease 0.4s, visibility 0.3s ease 0.4s;
+  transition: opacity 1s ease 0.5s, visibility 1s ease 0.5s;
+  contain: strict;
+  isolation: isolate;
 }
 
 .page-loader.loaded {
@@ -89,41 +91,39 @@ body {
   pointer-events: none;
 }
 
-/* Simple bar wave loader */
 .loader {
-  display: inline-grid;
-  transition: opacity 0.4s ease;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  height: 63px;
+  transition: opacity 0.5s ease;
 }
 
 .page-loader.loaded .loader {
   opacity: 0;
 }
 
-.loader::before,
-.loader::after {
-  content: "";
-  grid-area: 1/1;
-  height: 28px;
-  aspect-ratio: 6;
-  --c: #0000 64%, #333333 66% 98%, #0000 101%;
-  background:
-    radial-gradient(35% 146% at 50% 159%, var(--c)) 0 0,
-    radial-gradient(35% 146% at 50% -59%, var(--c)) 25% 100%;
-  background-size: calc(100% / 3) 50%;
-  background-repeat: repeat-x;
-  clip-path: inset(0 100% 0 0);
-  animation: l10 1s infinite linear;
+.loader span {
+  width: 7px;
+  height: 100%;
+  background: #1E7CD6;
+  border-radius: 3px;
+  transform-origin: center;
+  transform: scaleY(0.35);
+  animation: wave-bar 1.2s ease-in-out infinite;
+  animation-fill-mode: backwards;
+  will-change: transform;
 }
 
-.loader::after {
-  scale: -1;
-}
+.loader span:nth-child(1) { animation-delay: 0s; }
+.loader span:nth-child(2) { animation-delay: 0.1s; }
+.loader span:nth-child(3) { animation-delay: 0.2s; }
+.loader span:nth-child(4) { animation-delay: 0.3s; }
+.loader span:nth-child(5) { animation-delay: 0.4s; }
+.loader span:nth-child(6) { animation-delay: 0.5s; }
+.loader span:nth-child(7) { animation-delay: 0.6s; }
 
-@keyframes l10 {
-  50% {
-    clip-path: inset(0);
-  }
-  to {
-    clip-path: inset(0 0 0 100%);
-  }
+@keyframes wave-bar {
+  0%, 100% { transform: scaleY(0.45); }
+  50% { transform: scaleY(1); }
 }
