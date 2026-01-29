@@ -4,6 +4,7 @@ import { DM_Sans, Outfit } from "next/font/google";
 
 import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
+import Script from "next/script";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -99,8 +100,43 @@ export default function RootLayout({
       <body
         className={`${outfit.variable} ${dmSans.variable} antialiased`}
       >
+        <div className="page-loader" aria-hidden="true">
+          <div className="loader" aria-label="Cargando" role="status" />
+        </div>
         {children}
         {showBreakpointIndicator ? <BreakpointIndicator /> : null}
+        <Script id="page-loader" strategy="beforeInteractive">
+          {`
+            (function() {
+              var MIN_DURATION = 1000;
+              var startTime = Date.now();
+              var done = false;
+
+              function markLoaded() {
+                if (done) return;
+                done = true;
+                var loader = document.querySelector(".page-loader");
+                if (loader) loader.classList.add("loaded");
+              }
+
+              function onReady() {
+                var elapsed = Date.now() - startTime;
+                var remaining = MIN_DURATION - elapsed;
+                if (remaining <= 0) {
+                  markLoaded();
+                } else {
+                  setTimeout(markLoaded, remaining);
+                }
+              }
+
+              if (document.readyState === "complete") {
+                onReady();
+              } else {
+                window.addEventListener("load", onReady);
+              }
+            })();
+          `}
+        </Script>
       </body>
     </html>
   );

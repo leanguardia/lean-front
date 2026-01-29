@@ -70,3 +70,60 @@ body {
     @apply border-border;
   }
 }
+
+/* Lightweight centered loader */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background);
+  z-index: 50;
+  transition: opacity 0.3s ease 0.4s, visibility 0.3s ease 0.4s;
+}
+
+.page-loader.loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Simple bar wave loader */
+.loader {
+  display: inline-grid;
+  transition: opacity 0.4s ease;
+}
+
+.page-loader.loaded .loader {
+  opacity: 0;
+}
+
+.loader::before,
+.loader::after {
+  content: "";
+  grid-area: 1/1;
+  height: 28px;
+  aspect-ratio: 6;
+  --c: #0000 64%, #333333 66% 98%, #0000 101%;
+  background:
+    radial-gradient(35% 146% at 50% 159%, var(--c)) 0 0,
+    radial-gradient(35% 146% at 50% -59%, var(--c)) 25% 100%;
+  background-size: calc(100% / 3) 50%;
+  background-repeat: repeat-x;
+  clip-path: inset(0 100% 0 0);
+  animation: l10 1s infinite linear;
+}
+
+.loader::after {
+  scale: -1;
+}
+
+@keyframes l10 {
+  50% {
+    clip-path: inset(0);
+  }
+  to {
+    clip-path: inset(0 0 0 100%);
+  }
+}
