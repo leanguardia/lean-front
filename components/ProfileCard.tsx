@@ -2,6 +2,8 @@
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
+import { useRouter } from 'next/navigation';
+
 const DEFAULT_INNER_GRADIENT = 'linear-gradient(145deg,#C3FAE888 0%,#C3FAE844 100%)';
 
 const ANIMATION_CONFIG = {
@@ -71,6 +73,8 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   name = 'Javi A. Torres',
   title = 'Software Engineer'
 }) => {
+  const router = useRouter();
+  const [isStarting, setIsStarting] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
   const shellRef = useRef<HTMLDivElement>(null);
 
@@ -541,16 +545,25 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
               >
                 <button
                   type="button"
-                  className="w-full rounded-2xl px-4 py-3 text-center cursor-pointer bg-white/40 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.28)] transition duration-200 ease-out hover:bg-white/45 hover:border-white/30 hover:shadow-[0_12px_40px_rgba(0,0,0,0.32)] active:scale-[0.99]"
+                  disabled={isStarting}
+                  aria-busy={isStarting}
+                  className={[
+                    'w-full rounded-2xl px-4 py-3 text-center bg-white/40 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.28)] transition duration-200 ease-out active:scale-[0.99]',
+                    isStarting
+                      ? 'cursor-not-allowed opacity-75'
+                      : 'cursor-pointer hover:bg-white/45 hover:border-white/30 hover:shadow-[0_12px_40px_rgba(0,0,0,0.32)]',
+                  ].join(' ')}
                   onClick={() => {
-                    alert('todo lo bueno toma su tiempo...');
+                    if (isStarting) return;
+                    setIsStarting(true);
+                    router.push('/chat');
                   }}
                 >
                   <h3 className="m-0 font-sans font-semibold text-gray-700 leading-tight text-lg sm:text-xl">
                     {name}
                   </h3>
                   <p className="mt-1 font-medium text-gray-700/90 text-sm sm:text-base leading-tight">
-                    {title}
+                    {isStarting ? 'Iniciando...' : title}
                   </p>
                 </button>
               </div>

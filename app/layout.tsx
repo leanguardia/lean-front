@@ -92,7 +92,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const showBreakpointIndicator = process.env.NODE_ENV !== "production";
+  // const showBreakpointIndicator = process.env.NODE_ENV !== "production";
+  const showBreakpointIndicator = false;
 
   return (
     <html lang="es">
