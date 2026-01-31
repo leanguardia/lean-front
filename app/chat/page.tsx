@@ -84,10 +84,31 @@ export default function ChatPage() {
   }, [input, isTyping]);
 
   return (
-    <div className="min-h-[100dvh] bg-transparent min-[561px]:bg-accent-light min-[561px]:flex min-[561px]:items-center min-[561px]:justify-center p-0 min-[561px]:p-6">
-      <div className="w-full max-w-[560px] h-[100dvh] min-[561px]:h-[min(820px,calc(100dvh-3rem))]">
-        <div className="h-full flex flex-col bg-white overflow-hidden min-[561px]:rounded-4xl min-[561px]:border min-[561px]:border-gray-300/70 min-[561px]:shadow-[0_18px_80px_rgba(0,0,0,0.14)]">
-          <header className="px-3 min-[561px]:px-4 pt-3 min-[561px]:pt-4 pb-2.5 min-[561px]:pb-3 border-b border-gray-200">
+    <div className="min-h-[100dvh] min-[561px]:flex min-[561px]:items-center min-[561px]:justify-center p-0 min-[561px]:p-6 relative">
+      {/* D A T A cell-style radial gradient background */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 flex items-center justify-center pointer-events-none"
+      >
+        <div
+          className="z-0 absolute w-full h-full opacity-75"
+          style={{
+            background: 'radial-gradient(circle, var(--color-accent) 0%, var(--color-secondary) 100%)',
+          }}
+        />
+      </div>
+      <div className="relative z-10 w-full max-w-[560px] h-[100dvh] min-[561px]:h-[min(820px,calc(100dvh-3rem))]">
+        <div
+          className="h-full flex flex-col overflow-hidden min-[561px]:rounded-4xl min-[561px]:border min-[561px]:border-gray-300/70 min-[561px]:shadow-[0_18px_80px_rgba(0,0,0,0.14)]"
+          style={{
+            backgroundImage: "url('/white-marble-texture-bg1.jpg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundColor: 'var(--primary)',
+          }}
+        >
+          <header className="px-3 min-[561px]:px-4 pt-3 min-[561px]:pt-4 pb-2.5 min-[561px]:pb-3">
             <div className="flex items-center gap-2 min-[561px]:gap-3">
               <Link
                 href="/"
@@ -117,7 +138,7 @@ export default function ChatPage() {
               </div>
             </div>
           </header>
-
+s
           <main className="flex-1 min-h-0 overflow-y-auto px-3 min-[561px]:px-4 py-3 min-[561px]:py-4">
             <div className="flex flex-col gap-2.5 min-[561px]:gap-3">
               {messages.map((m) => {
@@ -150,7 +171,7 @@ export default function ChatPage() {
           </main>
 
           <form
-            className="border-t border-gray-200 p-2.5 min-[561px]:p-3"
+            className="p-2.5 min-[561px]:p-3"
             onSubmit={(e) => {
               e.preventDefault();
               void sendMessage();
