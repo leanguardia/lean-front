@@ -5,6 +5,8 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import Image from 'next/image';
 import Link from 'next/link';
+import RadialGlow from '@/components/RadialGlow';
+import ShinyText from '@/components/ShinyText';
 import TypingIndicator from '@/components/TypingIndicator';
 
 type ChatRole = 'user' | 'assistant';
@@ -57,7 +59,7 @@ export default function ChatPage() {
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }, [messages, isTyping]);
-
+ 
   useEffect(() => {
     const el = textareaRef.current;
     if (!el) return;
@@ -85,18 +87,7 @@ export default function ChatPage() {
 
   return (
     <div className="min-h-[100dvh] min-[561px]:flex min-[561px]:items-center min-[561px]:justify-center p-0 min-[561px]:p-6 relative">
-      {/* D A T A cell-style radial gradient background */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 flex items-center justify-center pointer-events-none"
-      >
-        <div
-          className="z-0 absolute w-full h-full opacity-75"
-          style={{
-            background: 'radial-gradient(circle, var(--color-accent) 0%, var(--color-secondary) 100%)',
-          }}
-        />
-      </div>
+      <RadialGlow />
       <div className="relative z-10 w-full max-w-[560px] h-[100dvh] min-[561px]:h-[min(820px,calc(100dvh-3rem))]">
         <div
           className="h-full flex flex-col overflow-hidden min-[561px]:rounded-4xl min-[561px]:border min-[561px]:border-gray-300/70 min-[561px]:shadow-[0_18px_80px_rgba(0,0,0,0.14)]"
@@ -119,27 +110,37 @@ export default function ChatPage() {
               </Link>
 
               <div className="flex items-center gap-2 min-[561px]:gap-3 min-w-0">
-                <div className="relative size-14 min-[561px]:size-18 rounded-full overflow-hidden border-1 border-gray-200 bg-accent-light shrink-0">
+                <div className="relative size-14 min-[561px]:size-18 rounded-full overflow-hidden bg-accent-light shrink-0">
                   <Image src="/images/lean.png" alt="leancontinuo avatar" fill className="object-cover" />
                 </div>
 
                 <div className="leading-tight text-left min-w-0">
-                  <div className="text-base min-[561px]:text-lg font-semibold text-gray-900 truncate">Leancontinuo</div>
-                  <div className="text-xs min-[561px]:text-sm text-gray-700">
-                    <span className="inline-flex items-center gap-2">
-                      <span aria-hidden="true" className="inline-block size-2 rounded-full bg-secondary" />
+                  <div className="text-base min-[561px]:text-lg font-medium text-gray-900 truncate">leancontinuo</div>
+                  <div className="text-xs min-[561px]:text-sm text-gray-800">
+                    <span className="inline-flex items-center gap-1">
+                      <ShinyText
+                        text="●"
+                        className="size-4 align-middle"
+                        color="var(--color-secondary)"
+                        shineColor="var(--color-accent-light)"
+                        spread={100}
+                        speed={2.1}
+                        pauseOnHover={false}
+                        direction="left"
+                        aria-hidden="true"
+                      />
                       <span>en línea</span>
                     </span>
                   </div>
-                  <div className="text-[11px] min-[561px]:text-xs text-gray-500 font-medium mt-1 whitespace-nowrap">
+                  <div className="text-sm min-[561px]:text-xs text-gray-800 font-normal font-serif font-medium mt-1 whitespace-nowrap">
                     powered by: <i>{MODEL_NAME}</i>
                   </div>
                 </div>
               </div>
             </div>
           </header>
-s
-          <main className="flex-1 min-h-0 overflow-y-auto px-3 min-[561px]:px-4 py-3 min-[561px]:py-4">
+
+          <main className="chat-messages-scroll flex-1 min-h-0 overflow-y-auto px-3 min-[561px]:px-4 py-3 min-[561px]:py-4">
             <div className="flex flex-col gap-2.5 min-[561px]:gap-3">
               {messages.map((m) => {
                 const isUser = m.role === 'user';
@@ -147,10 +148,10 @@ s
                   <div key={m.id} className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
                     <div
                       className={[
-                        'max-w-[80%] min-[561px]:max-w-[78%] rounded-2xl px-3.5 min-[561px]:px-4 py-2.5 min-[561px]:py-3 text-sm leading-relaxed',
+                        'max-w-[80%] min-[561px]:max-w-[78%] rounded-2xl px-3.5 min-[561px]:px-4 py-2.5 min-[561px]:py-3 text-sm leading-relaxed opacity-[0.70]',
                         isUser
-                          ? 'bg-accent-light border-accent-light text-gray-800'
-                          : 'bg-gray-50 text-gray-800',
+                          ? 'bg-accent-light border-accent-light text-black'
+                          : 'bg-gray-50 text-black',
                       ].join(' ')}
                       style={{ wordBreak: 'break-word' }}
                     >
@@ -195,9 +196,10 @@ s
                 maxLength={MAX_INPUT_CHARS}
                 placeholder="Mensaje…"
                 className={[
-                  'flex-1 resize-none rounded-3xl border border-gray-300 bg-white px-4 py-3 text-base leading-5 text-gray-900 placeholder:text-gray-500',
-                  'focus:outline-none focus:ring-0 focus:border-gray-300',
+                  'flex-1 resize-none rounded-3xl bg-white px-4 py-3 text-base leading-5 text-black placeholder:text-gray-700',
+                  'focus:outline-none focus:ring-0 focus:inset-shadow-[0_0px_7px_rgba(255,255,255,0.5)]',
                   'overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden',
+                  'opacity-64 inset-shadow-[0_0px_14px_rgba(140,140,140,0.2)]',
                 ].join(' ')}
                 style={{ WebkitTapHighlightColor: 'transparent' }}
               />
@@ -207,13 +209,13 @@ s
                 disabled={!canSend}
                 aria-label="Send message"
                 className={[
-                  'shrink-0 inline-flex items-center justify-center rounded-full size-12 border transition',
+                  'shrink-0 inline-flex items-center justify-center rounded-full size-12 transition transition-all duration-500',
                   canSend
-                    ? 'bg-accent border-accent text-white hover:brightness-105 active:scale-[0.98] shadow-[0_10px_26px_rgba(0,0,0,0.18)]'
-                    : 'bg-gray-200 border-gray-200 text-gray-500 cursor-not-allowed',
+                    ? 'bg-accent text-white hover:brightness-105 shadow-[0_0px_14px_rgba(0,0,0,0.2)]'
+                    : 'bg-neutral-light text-gray-500 cursor-not-allowed',
                 ].join(' ')}
               >
-                <FiSend className="h-5 w-5" />
+                <FiSend className="h-6 w-6" />
               </button>
             </div>
           </form>
@@ -222,4 +224,3 @@ s
     </div>
   );
 }
-

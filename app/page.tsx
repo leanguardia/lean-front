@@ -3,6 +3,7 @@ import Logo from '@/app/components/Logo';
 import LogoLoop, { type LogoItem } from '@/components/LogoLoop';
 import MagnetLines from '@/components/MagnetLines';
 import ProfileCard from '@/components/ProfileCard';
+import RadialGlow from '@/components/RadialGlow';
 import ShinyText from '@/components/ShinyText';
 import Iridescence from '@/components/Iridescence';
 import ArticleCarousel from '@/components/ArticleCarousel';
@@ -154,18 +155,7 @@ export default function Home() {
           rowSpan="row-span-2"
           padding="px-3 md:px-4 pb-2"
         >
-          {/* Gradient circle background */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 flex items-center justify-center pointer-events-none"
-          >
-            <div
-              className="z-0 absolute w-full h-full opacity-75"
-              style={{
-                background: 'radial-gradient(circle, var(--color-accent) 0%, var(--color-secondary) 100%)',
-              }}
-            />
-          </div>
+          <RadialGlow />
           <div className="relative z-10 flex flex-col h-full p-2 md:p-3 xl:p-6">
             <h3 className="text-md md:text-xl font-serif text-gray-900 mb-6">
               D A T O S

@@ -4,16 +4,15 @@ import ShinyText from '@/components/ShinyText';
 
 export default function TypingIndicator() {
   return (
-    <div className="flex items-center text-gray-600 text-sm">
+    <div className="flex items-center text-white text-sm">
       <span className="inline-flex items-center gap-1 px-3 py-2">
-        <span className="font-medium italic">
+        <span className="italic">
           <ShinyText
             text="escribiendo…"
-            color="#888"
-            shineColor="#34d399"
+            color="var(--color-gray-600)"
+            shineColor="var(--color-accent-light)"
             speed={1.25}
-            yoyo
-            className="font-semibold tracking-wide"
+            className="font-medium tracking-wide"
           />
         </span>
       </span>
