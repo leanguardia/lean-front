@@ -1,7 +1,8 @@
 'use client';
 
 import { FiArrowLeft, FiSend } from 'react-icons/fi';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { sendMessage as sendMessageAPI, startConversation } from '@/lib/api/chat';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,81 +10,90 @@ import RadialGlow from '@/components/RadialGlow';
 import ShinyText from '@/components/ShinyText';
 import TypingIndicator from '@/components/TypingIndicator';
 
-type ChatRole = 'user' | 'assistant';
-
 type ChatMessage = {
   id: string;
-  role: ChatRole;
+  role: 'user' | 'assistant';
   content: string;
 };
 
 const MODEL_NAME = 'gemini-2.0-flash-001';
 const MAX_INPUT_CHARS = 700;
 
-const LOREM_REPLIES: string[] = [
-  'Lorem ipsum dolor sit amet.',
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.',
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh.',
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa.',
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet.',
-];
-
-const uid = (): string =>
+const uid = () =>
   typeof crypto !== 'undefined' && 'randomUUID' in crypto
     ? crypto.randomUUID()
     : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 
-const sleep = (ms: number): Promise<void> => new Promise((r) => setTimeout(r, ms));
-
-async function fakeAssistantReply(): Promise<string> {
-  await sleep(1000);
-  return LOREM_REPLIES[Math.floor(Math.random() * LOREM_REPLIES.length)] ?? LOREM_REPLIES[0]!;
-}
-
 export default function ChatPage() {
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [messages, setMessages] = useState<ChatMessage[]>(() => [
-    {
-      id: uid(),
-      role: 'assistant',
-      content: 'Hola humano, soy Lean Artificial y estoy conectado a la psique de Leandro real, ¿de qué quieres charlar?',
-    },
-  ]);
+  const [conversationId, setConversationId] = useState<string | null>(null);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [isInitializing, setIsInitializing] = useState(true);
 
-  const canSend = useMemo(() => input.trim().length > 0 && !isTyping, [input, isTyping]);
-  const bottomRef = useRef<HTMLDivElement | null>(null);
-  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const canSend = useMemo(
+    () => input.trim().length > 0 && !isTyping && conversationId !== null,
+    [input, isTyping, conversationId]
+  );
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    const initConversation = async () => {
+      try {
+        const response = await startConversation();
+        setConversationId(response.id);
+      } catch (err) {
+        setError('Failed to start conversation. Please try refreshing the page.');
+      } finally {
+        setIsInitializing(false);
+      }
+    };
+    void initConversation();
+  }, []);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }, [messages, isTyping]);
- 
+
   useEffect(() => {
     const el = textareaRef.current;
     if (!el) return;
-    // Auto-grow textarea (up to a cap), avoid visible scrollbars.
     el.style.height = '0px';
-    const next = Math.min(el.scrollHeight, 160);
-    el.style.height = `${Math.max(next, 48)}px`;
+    el.style.height = `${Math.max(Math.min(el.scrollHeight, 160), 48)}px`;
   }, [input]);
 
-  const sendMessage = useCallback(async (): Promise<void> => {
+  const sendMessage = useCallback(async () => {
     const text = input.trim();
-    if (!text || isTyping) return;
+    if (!text || isTyping || !conversationId) return;
 
     setMessages((prev) => [...prev, { id: uid(), role: 'user', content: text }]);
     setInput('');
     setIsTyping(true);
+    setError(null);
 
     try {
-      const reply = await fakeAssistantReply();
-      setMessages((prev) => [...prev, { id: uid(), role: 'assistant', content: reply }]);
+      const response = await sendMessageAPI(conversationId, text);
+      setMessages((prev) => [...prev, { id: response.id, role: 'assistant', content: response.message }]);
+    } catch (err) {
+      setError('Failed to send message. Please try again.');
     } finally {
       setIsTyping(false);
     }
-  }, [input, isTyping]);
+  }, [input, isTyping, conversationId]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    void sendMessage();
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      void sendMessage();
+    }
+  };
 
   return (
     <div className="min-h-[100dvh] min-[561px]:flex min-[561px]:items-center min-[561px]:justify-center p-0 min-[561px]:p-6 relative">
@@ -115,22 +125,31 @@ export default function ChatPage() {
                 </div>
 
                 <div className="leading-tight text-left min-w-0">
-                  <div className="text-base min-[561px]:text-lg font-medium text-gray-900 truncate">leancontinuo</div>
+                  <div className="text-base min-[561px]:text-lg font-medium text-gray-900 truncate">
+                    leancontinuo
+                  </div>
                   <div className="text-xs min-[561px]:text-sm text-gray-800">
-                    <span className="inline-flex items-center gap-1">
-                      <ShinyText
-                        text="●"
-                        className="size-4 align-middle"
-                        color="var(--color-secondary)"
-                        shineColor="var(--color-accent-light)"
-                        spread={100}
-                        speed={2.1}
-                        pauseOnHover={false}
-                        direction="left"
-                        aria-hidden="true"
-                      />
-                      <span>en línea</span>
-                    </span>
+                    {error ? (
+                      <span className="inline-flex items-center gap-1">
+                        <span className="text-gray-500" aria-hidden="true">●</span>
+                        <span>No disponible</span>
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1">
+                        <ShinyText
+                          text="●"
+                          className="size-4 align-middle"
+                          color="var(--color-secondary)"
+                          shineColor="var(--color-accent-light)"
+                          spread={100}
+                          speed={2.1}
+                          pauseOnHover={false}
+                          direction="left"
+                          aria-hidden="true"
+                        />
+                        <span>en línea</span>
+                      </span>
+                    )}
                   </div>
                   <div className="text-sm min-[561px]:text-xs text-gray-800 font-normal font-serif font-medium mt-1 whitespace-nowrap">
                     powered by: <i>{MODEL_NAME}</i>
@@ -141,79 +160,65 @@ export default function ChatPage() {
           </header>
 
           <main className="chat-messages-scroll flex-1 min-h-0 overflow-y-auto px-3 min-[561px]:px-4 py-3 min-[561px]:py-4">
-            <div className="flex flex-col gap-2.5 min-[561px]:gap-3">
-              {messages.map((m) => {
-                const isUser = m.role === 'user';
-                return (
-                  <div key={m.id} className={`flex ${isUser ? 'justify-end' : 'justify-start'}`}>
+            {isInitializing ? (
+              <div className="flex items-center justify-center h-full">
+                <div className="text-gray-700 text-sm">Iniciando conversación...</div>
+              </div>
+            ) : error ? (
+              <div className="flex items-center justify-center h-full px-4">
+                <div className="text-red-600 text-sm text-center bg-white/80 rounded-2xl px-4 py-3 max-w-[90%]">
+                  {error}
+                </div>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-2.5 min-[561px]:gap-3">
+                {messages.map((m) => (
+                  <div key={m.id} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                     <div
-                      className={[
-                        'max-w-[80%] min-[561px]:max-w-[78%] rounded-2xl px-3.5 min-[561px]:px-4 py-2.5 min-[561px]:py-3 text-sm leading-relaxed opacity-[0.70]',
-                        isUser
+                      className={`max-w-[80%] min-[561px]:max-w-[78%] rounded-2xl px-3.5 min-[561px]:px-4 py-2.5 min-[561px]:py-3 text-sm leading-relaxed opacity-[0.70] ${
+                        m.role === 'user'
                           ? 'bg-accent-light border-accent-light text-black'
-                          : 'bg-gray-50 text-black',
-                      ].join(' ')}
+                          : 'bg-gray-50 text-black'
+                      }`}
                       style={{ wordBreak: 'break-word' }}
                     >
                       <div className="whitespace-pre-wrap">{m.content}</div>
                     </div>
                   </div>
-                );
-              })}
-
-              {isTyping ? (
-                <div className="flex justify-start">
-                  <TypingIndicator />
-                </div>
-              ) : null}
-
-              <div ref={bottomRef} />
-            </div>
+                ))}
+                {isTyping && (
+                  <div className="flex justify-start">
+                    <TypingIndicator />
+                  </div>
+                )}
+                <div ref={bottomRef} />
+              </div>
+            )}
           </main>
 
-          <form
-            className="p-2.5 min-[561px]:p-3"
-            onSubmit={(e) => {
-              e.preventDefault();
-              void sendMessage();
-            }}
-          >
+          <form className="p-2.5 min-[561px]:p-3" onSubmit={handleSubmit}>
             <div className="flex items-end gap-2">
               <textarea
                 ref={textareaRef}
                 value={input}
-                onChange={(e) => {
-                  const next = e.target.value.slice(0, MAX_INPUT_CHARS);
-                  setInput(next);
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    void sendMessage();
-                  }
-                }}
+                onChange={(e) => setInput(e.target.value.slice(0, MAX_INPUT_CHARS))}
+                onKeyDown={handleKeyDown}
                 rows={1}
                 maxLength={MAX_INPUT_CHARS}
                 placeholder="Mensaje…"
-                className={[
-                  'flex-1 resize-none rounded-3xl bg-white px-4 py-3 text-base leading-5 text-black placeholder:text-gray-700',
-                  'focus:outline-none focus:ring-0 focus:inset-shadow-[0_0px_7px_rgba(255,255,255,0.5)]',
-                  'overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden',
-                  'opacity-64 inset-shadow-[0_0px_14px_rgba(140,140,140,0.2)]',
-                ].join(' ')}
+                disabled={isInitializing || error !== null}
+                className="flex-1 resize-none rounded-3xl bg-white px-4 py-3 text-base leading-5 text-black placeholder:text-gray-700 focus:outline-none focus:ring-0 focus:inset-shadow-[0_0px_7px_rgba(255,255,255,0.5)] overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden opacity-64 inset-shadow-[0_0px_14px_rgba(140,140,140,0.2)] disabled:opacity-40 disabled:cursor-not-allowed"
                 style={{ WebkitTapHighlightColor: 'transparent' }}
               />
-
               <button
                 type="submit"
                 disabled={!canSend}
                 aria-label="Send message"
-                className={[
-                  'shrink-0 inline-flex items-center justify-center rounded-full size-12 transition transition-all duration-500',
+                className={`shrink-0 inline-flex items-center justify-center rounded-full size-12 transition transition-all duration-500 ${
                   canSend
                     ? 'bg-accent text-white hover:brightness-105 shadow-[0_0px_14px_rgba(0,0,0,0.2)]'
-                    : 'bg-neutral-light text-gray-500 cursor-not-allowed',
-                ].join(' ')}
+                    : 'bg-neutral-light text-gray-500 cursor-not-allowed'
+                }`}
               >
                 <FiSend className="h-6 w-6" />
               </button>
