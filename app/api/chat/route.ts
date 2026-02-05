@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
     const response = await fetch(`${BACKEND_BASE_URL}/chat`, {
       method: 'POST',
       headers: {
-        'X-API-Key': BACKEND_API_KEY,
+        'X-API-Key': BACKEND_API_KEY!,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
