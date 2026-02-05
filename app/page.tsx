@@ -118,8 +118,8 @@ export default function Home() {
         >
           <ProfileCard
             avatarUrl="/images/lean.png"
+            title="chat with"
             name="Artificial Lean"
-            title="chat with me"
             className="flex-1 min-h-0"
           />
         </GridCard>
@@ -138,7 +138,7 @@ export default function Home() {
               logos={interestItems}
               direction="up"
               speed={33}
-              hoverSpeed={99}
+              hoverSpeed={11}
               logoHeight={18}
               gap={10}
               ariaLabel="Interests"

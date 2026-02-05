@@ -1,9 +1,11 @@
 'use client';
 
 import { FaArrowLeftLong, FaArrowRightLong } from 'react-icons/fa6';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Image from 'next/image';
+
+const TOUCH_MOVE_THRESHOLD_PX = 5;
 
 export interface Article {
   title: string;
@@ -20,6 +22,23 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
   // `currentIndex` is the current "page" index (one page = 1 card on mobile, 2 cards on md+).
   const [currentIndex, setCurrentIndex] = useState(0);
   const [slidesPerView, setSlidesPerView] = useState(1);
+  // On touch devices, one card can be "expanded" (revealed by slight drag).
+  const [expandedCard, setExpandedCard] = useState<string | null>(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const touchGesture = useRef<{
+    cardKey: string;
+    startX: number;
+    startY: number;
+    revealed: boolean;
+  } | null>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: none)');
+    const setTouch = () => setIsTouchDevice(mq.matches);
+    setTouch();
+    mq.addEventListener('change', setTouch);
+    return () => mq.removeEventListener('change', setTouch);
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -46,12 +65,50 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
     setCurrentIndex((prev) => Math.min(prev, maxIndex));
   }, [maxIndex]);
 
+  // Reset tap-expanded state when user navigates to another slide.
+  useEffect(() => {
+    setExpandedCard(null);
+  }, [currentIndex]);
+
   const nextSlide = () => {
     setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
   };
 
   const prevSlide = () => {
     setCurrentIndex((prev) => Math.max(prev - 1, 0));
+  };
+
+  const handleTouchStart = (cardKey: string, e: React.TouchEvent) => {
+    const t = e.touches[0];
+    touchGesture.current = {
+      cardKey,
+      startX: t.clientX,
+      startY: t.clientY,
+      revealed: false,
+    };
+  };
+
+  const handleTouchMove = (cardKey: string, e: React.TouchEvent) => {
+    const g = touchGesture.current;
+    if (!g || g.cardKey !== cardKey || g.revealed) return;
+    const t = e.touches[0];
+    const dx = t.clientX - g.startX;
+    const dy = t.clientY - g.startY;
+    if (Math.hypot(dx, dy) >= TOUCH_MOVE_THRESHOLD_PX) {
+      g.revealed = true;
+      setExpandedCard(cardKey);
+    }
+  };
+
+  const handleCardClick = (e: React.MouseEvent, cardKey: string) => {
+    if (isTouchDevice && touchGesture.current?.revealed) {
+      e.preventDefault();
+      e.stopPropagation();
+      touchGesture.current = null;
+      return;
+    }
+    touchGesture.current = null;
+    alert('¿en verdad ibas a leer el artículo?');
   };
 
   return (
@@ -102,40 +159,50 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
               key={pageIdx}
               className="w-full flex-none grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 h-full [&>*:not(:last-child)]:border-r-2 [&>*:not(:last-child)]:border-gray-500"
             >
-              {page.map((article, idx) => (
-                <button
-                  key={`${pageIdx}-${idx}`}
-                  type="button"
-                  onClick={() => alert('¿en verdad ibas a leer el artículo?')}
-                  className="group/article relative overflow-hidden bg-white flex flex-col text-left cursor-pointer transition-all duration-200 ease-out"
-                >
-                  {/* Image section */}
-                  <div className="relative h-4/5 w-full">
-                    <Image
-                      src={article.image}
-                      alt={article.title}
-                      fill
-                      className="object-cover border-gray-500"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      priority={pageIdx === 0 && idx === 0}
-                    />
-                    {/* Excerpt overlay on hover */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/article:opacity-100 transition-opacity duration-200 ease-out">
-                      <div className="absolute inset-0 bg-white/82"></div>
-                      <p className="relative z-10 text-gray-700 text-base px-4 md:px-6 line-clamp-4 text-center font-sans">
-                        {article.excerpt}
-                      </p>
+              {page.map((article, idx) => {
+                const cardKey = `${pageIdx}-${idx}`;
+                const isExpanded = isTouchDevice && expandedCard === cardKey;
+                return (
+                  <button
+                    key={cardKey}
+                    type="button"
+                    onClick={(e) => handleCardClick(e, cardKey)}
+                    onTouchStart={(e) => handleTouchStart(cardKey, e)}
+                    onTouchMove={(e) => handleTouchMove(cardKey, e)}
+                    className="group/article relative overflow-hidden bg-white flex flex-col text-center cursor-pointer transition-all duration-200 ease-out"
+                  >
+                    {/* Image section */}
+                    <div className="relative h-4/5 w-full">
+                      <Image
+                        src={article.image}
+                        alt={article.title}
+                        fill
+                        className="object-cover border-gray-500"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        priority={pageIdx === 0 && idx === 0}
+                      />
+                      {/* Excerpt overlay: hover on desktop; on touch, slight drag reveals, tap opens article */}
+                      <div
+                        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-200 ease-out opacity-0 group-hover/article:opacity-100 ${isExpanded ? 'opacity-100' : ''}`}
+                      >
+                        <div className="absolute inset-0 bg-white/82"></div>
+                        <p className="relative z-10 text-gray-700 text-base px-4 md:px-6 line-clamp-4 text-center font-sans">
+                          {article.excerpt}
+                        </p>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Content section */}
-                  <div className="h-1/5 bg-white px-4 md:px-5 flex flex-col justify-center">
-                    <h4 className="text-md md:text-lg font-serif font-semibold text-gray-600 leading-tight line-clamp-2 group-hover/article:scale-103 group-hover/article:text-right group-hover/article:text-gray-800 transition-all duration-200 ease-out">
-                      {article.title}
-                    </h4>
-                  </div>
-                </button>
-              ))}
+                    {/* Content section */}
+                    <div className="h-1/5 bg-white px-4 md:px-5 flex flex-col justify-center">
+                      <h4
+                        className={`text-md md:text-lg font-serif font-semibold leading-tight line-clamp-2 transition-all duration-200 ease-out text-gray-600 group-hover/article:scale-103 group-hover/article:text-gray-800 ${isExpanded ? 'scale-[1.03] text-gray-800' : ''}`}
+                      >
+                        {article.title}
+                      </h4>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           ))}
         </div>

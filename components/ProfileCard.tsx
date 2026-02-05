@@ -435,7 +435,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   return (
     <div
       ref={wrapRef}
-      className={`relative touch-none w-full h-full ${className}`.trim()}
+      className={`relative w-full h-full min-h-0 ${className}`.trim()}
       style={{ perspective: '500px', transform: 'translate3d(0, 0, 0.1px)', ...cardStyle } as React.CSSProperties}
     >
       {behindGlowEnabled && (
@@ -448,7 +448,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
           }}
         />
       )}
-      <div ref={shellRef} className="relative z-[1] group w-full h-full">
+      <div ref={shellRef} className="relative z-[1] group w-full h-full md:touch-none">
         <section
           className="grid relative overflow-hidden w-full h-full"
           style={{
@@ -548,10 +548,10 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                   disabled={isStarting}
                   aria-busy={isStarting}
                   className={[
-                    'w-full rounded-2xl px-4 py-3 text-center bg-white/40 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.28)] transition duration-200 ease-out active:scale-[0.99]',
+                    'w-full rounded-3xl md:rounded-full px-5 py-4 text-center bg-white/50 backdrop-blur-xl border-3 border-white/30 shadow-[0_0_32px_rgba(0,0,0,0.28)] transition-all duration-200 ease-out active:scale-[0.99] opacity-80 group-hover:opacity-100 group-hover:scale-[1.03] group-hover:bg-white/60 group-hover:border-white/40 group-hover:shadow-[0_0_40px_rgba(0,0,0,0.35)]',
                     isStarting
-                      ? 'cursor-not-allowed opacity-75'
-                      : 'cursor-pointer hover:bg-white/45 hover:border-white/30 hover:shadow-[0_12px_40px_rgba(0,0,0,0.32)]',
+                      ? 'cursor-not-allowed'
+                      : 'cursor-pointer',
                   ].join(' ')}
                   onClick={() => {
                     if (isStarting) return;
@@ -559,12 +559,12 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                     router.push('/chat');
                   }}
                 >
-                  <h3 className="m-0 font-sans font-semibold text-gray-700 leading-tight text-lg sm:text-xl">
+                  <p className="m-0 font-medium text-gray-700/90 text-base sm:text-lg leading-tight uppercase tracking-wide">
+                    {title}
+                  </p>
+                  <h3 className="mt-1 font-sans font-bold text-gray-800 tracking-wide leading-tight text-lg sm:text-xl md:text-2xl uppercase tracking-tight">
                     {name}
                   </h3>
-                  <p className="mt-1 font-medium text-gray-700/90 text-sm sm:text-base leading-tight">
-                    {isStarting ? 'Iniciando...' : title}
-                  </p>
                 </button>
               </div>
             </div>
