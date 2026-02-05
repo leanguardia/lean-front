@@ -24,6 +24,41 @@ const uid = () =>
     ? crypto.randomUUID()
     : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 
+function AvailabilityStatus({
+  isInitializing,
+  hasError,
+}: {
+  isInitializing: boolean;
+  hasError: boolean;
+}) {
+  const unavailable = isInitializing || hasError;
+  return (
+    <div className="text-xs min-[561px]:text-sm text-gray-800">
+      {unavailable ? (
+        <span className="inline-flex items-center gap-1">
+          <span className="text-gray-500" aria-hidden="true">●</span>
+          <span>No disponible</span>
+        </span>
+      ) : (
+        <span className="inline-flex items-center gap-1">
+          <ShinyText
+            text="●"
+            className="size-4 align-middle"
+            color="var(--color-secondary)"
+            shineColor="var(--color-accent-light)"
+            spread={100}
+            speed={2.1}
+            pauseOnHover={false}
+            direction="left"
+            aria-hidden="true"
+          />
+          <span>en línea</span>
+        </span>
+      )}
+    </div>
+  );
+}
+
 export default function ChatPage() {
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -45,7 +80,7 @@ export default function ChatPage() {
         const response = await startConversation();
         setConversationId(response.id);
       } catch (err) {
-        setError('Failed to start conversation. Please try refreshing the page.');
+        setError('Ups, algo se rompió, vete a hablar con mi humano.');
       } finally {
         setIsInitializing(false);
       }
@@ -77,7 +112,7 @@ export default function ChatPage() {
       const response = await sendMessageAPI(conversationId, text);
       setMessages((prev) => [...prev, { id: response.id, role: 'assistant', content: response.message }]);
     } catch (err) {
-      setError('Failed to send message. Please try again.');
+      setError('Ups, algo se rompió, vete a hablar con mi humano.');
     } finally {
       setIsTyping(false);
     }
@@ -128,30 +163,8 @@ export default function ChatPage() {
                   <div className="text-base min-[561px]:text-lg font-medium text-gray-900 truncate">
                     leancontinuo
                   </div>
-                  <div className="text-xs min-[561px]:text-sm text-gray-800">
-                    {error ? (
-                      <span className="inline-flex items-center gap-1">
-                        <span className="text-gray-500" aria-hidden="true">●</span>
-                        <span>No disponible</span>
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center gap-1">
-                        <ShinyText
-                          text="●"
-                          className="size-4 align-middle"
-                          color="var(--color-secondary)"
-                          shineColor="var(--color-accent-light)"
-                          spread={100}
-                          speed={2.1}
-                          pauseOnHover={false}
-                          direction="left"
-                          aria-hidden="true"
-                        />
-                        <span>en línea</span>
-                      </span>
-                    )}
-                  </div>
-                  <div className="text-sm min-[561px]:text-xs text-gray-800 font-normal font-serif font-medium mt-1 whitespace-nowrap">
+                  <AvailabilityStatus isInitializing={isInitializing} hasError={!!error} />
+                  <div className="text-sm text-gray-800 font-normal font-serif font-medium mt-1 whitespace-nowrap">
                     powered by: <i>{MODEL_NAME}</i>
                   </div>
                 </div>

@@ -1,14 +1,4 @@
-const BACKEND_BASE_URL = process.env.NEXT_PUBLIC_BACKEND_BASE_URL;
-const BACKEND_API_KEY = process.env.NEXT_PUBLIC_BACKEND_API_KEY;
 const DEBUG_MODE = process.env.NEXT_PUBLIC_DEBUG_MODE === 'true';
-
-if (!DEBUG_MODE && !BACKEND_BASE_URL) {
-  throw new Error('NEXT_PUBLIC_BACKEND_BASE_URL is not defined in environment variables');
-}
-
-if (!DEBUG_MODE && !BACKEND_API_KEY) {
-  throw new Error('NEXT_PUBLIC_BACKEND_API_KEY is not defined in environment variables');
-}
 
 export interface SendMessageDto {
   message: string;
@@ -47,7 +37,7 @@ const uid = () =>
 
 export async function startConversation(): Promise<ChatStartResponse> {
   if (DEBUG_MODE) {
-    await sleep(500);
+    await sleep(700);
     return {
       id: uid(),
       ipAddress: '127.0.0.1',
@@ -55,12 +45,9 @@ export async function startConversation(): Promise<ChatStartResponse> {
     };
   }
 
-  const response = await fetch(`${BACKEND_BASE_URL}/chat/start`, {
+  const response = await fetch('/api/chat/start', {
     method: 'POST',
-    headers: {
-      'X-API-Key': BACKEND_API_KEY!,
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
   });
 
   if (!response.ok) {
@@ -81,12 +68,9 @@ export async function sendMessage(conversationId: string, message: string): Prom
     };
   }
 
-  const response = await fetch(`${BACKEND_BASE_URL}/chat`, {
+  const response = await fetch('/api/chat', {
     method: 'POST',
-    headers: {
-      'X-API-Key': BACKEND_API_KEY!,
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ message, conversationId } as SendMessageDto),
   });
 
