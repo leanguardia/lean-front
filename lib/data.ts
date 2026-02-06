@@ -117,24 +117,28 @@ export const articles: Article[] = [
     title: 'Todo comienza con tus valores',
     excerpt: 'Si prestas atención, todos exponemos nuestros valores continuamente…',
     image: '/images/articles/valores.jpeg',
+    slug: 'valores',
   },
   {
     title: 'Leer',
     excerpt:
       'Te encuentras en una isla. La brisa es lenta y cálida, acaricia tu piel y se siente familiar…',
     image: '/images/articles/leer.jpeg',
+    slug: 'leer',
   },
   {
     title: 'Síndrome del impostor',
     excerpt:
       'Mike, el cofundador de Atlassian y representante de Australia en el evento World Entrepreneur…',
     image: '/images/articles/imposter.jpeg',
+    slug: 'sindrome-del-impostor',
   },
   {
     title: 'Tecnología',
     excerpt:
       'El camino de tierra era irregular, estaba marcado por huellas de caballo y ruedas de carrozas arrastradas…',
     image: '/images/articles/tecnologia.jpeg',
+    slug: 'tecnologia',
   },
 ];
 

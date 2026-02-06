@@ -1,6 +1,7 @@
 'use client';
 
 import { FaArrowLeftLong, FaArrowRightLong } from 'react-icons/fa6';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 import Image from 'next/image';
@@ -100,7 +101,7 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
     }
   };
 
-  const handleCardClick = (e: React.MouseEvent, cardKey: string) => {
+  const handleCardClick = (e: React.MouseEvent, cardKey: string, slug?: string) => {
     if (isTouchDevice && touchGesture.current?.revealed) {
       e.preventDefault();
       e.stopPropagation();
@@ -108,7 +109,7 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
       return;
     }
     touchGesture.current = null;
-    alert('¿en verdad ibas a leer el artículo?');
+    if (!slug) e.preventDefault();
   };
 
   return (
@@ -162,13 +163,14 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
               {page.map((article, idx) => {
                 const cardKey = `${pageIdx}-${idx}`;
                 const isExpanded = isTouchDevice && expandedCard === cardKey;
+                const href = article.slug ? `/${article.slug}` : '#';
                 return (
-                  <button
+                  <Link
                     key={cardKey}
-                    type="button"
-                    onClick={(e) => handleCardClick(e, cardKey)}
+                    href={href}
                     onTouchStart={(e) => handleTouchStart(cardKey, e)}
                     onTouchMove={(e) => handleTouchMove(cardKey, e)}
+                    onClick={(e) => handleCardClick(e, cardKey, article.slug)}
                     className="group/article relative overflow-hidden bg-white flex flex-col text-center cursor-pointer transition-all duration-200 ease-out"
                   >
                     {/* Image section */}
@@ -200,7 +202,7 @@ export default function ArticleCarousel({ articles }: ArticleCarouselProps) {
                         {article.title}
                       </h4>
                     </div>
-                  </button>
+                  </Link>
                 );
               })}
             </div>
