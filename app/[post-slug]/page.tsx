@@ -1,6 +1,7 @@
-import { getAllArticleSlugs, getArticleBySlug } from '@/lib/articles';
+import { calculateReadingMinutes, getAllArticleSlugs, getArticleBySlug } from '@/lib/articles';
 
 import ArticleBody from '@/app/components/ArticleBody';
+import ArticlePageLayout from '@/app/[post-slug]/ArticlePageLayout';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -51,8 +52,13 @@ export default async function PostPage({ params }: PageProps) {
   if (!article) notFound();
 
   return (
-    <article className="min-h-screen bg-background">
-      <div className="mx-auto max-w-2xl px-4 py-8 md:py-12">
+    <ArticlePageLayout>
+      <div
+        className="mx-auto max-w-2xl px-4 py-8 md:py-12"
+        style={{
+          background: `linear-gradient(to right, transparent 0px, var(--background) 21px, var(--background) calc(100% - 21px), transparent 100%)`,
+        }}
+      >
         <Link
           href="/"
           className="mb-8 inline-block text-gray-600 hover:text-gray-900 transition-colors font-sans text-sm"
@@ -60,7 +66,7 @@ export default async function PostPage({ params }: PageProps) {
           ← Volver
         </Link>
 
-        <header className="mb-8">
+        <header className="mb-8 text-center">
           <h1 className="font-serif text-3xl md:text-4xl font-semibold text-gray-900 leading-tight">
             {article.title}
           </h1>
@@ -69,17 +75,17 @@ export default async function PostPage({ params }: PageProps) {
               {article.subtitle}
             </p>
           )}
-          <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 font-sans text-sm text-gray-500">
+          <div className="mt-4 flex justify-center gap-x-4 gap-y-1 font-sans text-sm text-gray-500">
             <time dateTime={article.publishedAt}>
               {formatDate(article.publishedAt)}
             </time>
             <span>·</span>
-            <span>{article.wordCount} palabras</span>
+            <span>{calculateReadingMinutes(article.wordCount)}</span>
           </div>
         </header>
 
         {article.coverImageUrl && (
-          <div className="mb-8 aspect-square relative w-full max-w-md overflow-hidden rounded-lg bg-gray-100">
+          <div className="mx-auto mb-8 aspect-square relative w-full max-w-md overflow-hidden rounded-lg bg-gray-100">
             <Image
               src={article.coverImageUrl}
               alt={article.coverImageAlt ?? article.title}
@@ -92,7 +98,33 @@ export default async function PostPage({ params }: PageProps) {
         )}
 
         <ArticleBody content={article.body} />
+
+        <footer className="mt-12 pt-8 border-t border-gray-200 flex items-center gap-3">
+          <div
+            className={`relative size-12 rounded-full overflow-hidden shrink-0 ${
+              slug.split('').reduce((a, c) => a + c.charCodeAt(0), 0) % 2 === 0
+                ? 'bg-primary'
+                : 'bg-accent-light'
+            }`}
+          >
+            <Image
+              src="/images/lean.png"
+              alt=""
+              fill
+              className="object-cover"
+              sizes="3rem"
+            />
+          </div>
+          <div className="min-w-0">
+            <p className="font-sans text-md font-medium text-gray-900">
+              leancontinuo
+            </p>
+            <p className="font-sans text-sm text-gray-500">
+              tecnólogo y filósofo
+            </p>
+          </div>
+        </footer>
       </div>
-    </article>
+    </ArticlePageLayout>
   );
 }
