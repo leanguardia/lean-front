@@ -7,8 +7,23 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import RadialGlow from '@/components/RadialGlow';
+import ReactMarkdown from 'react-markdown';
 import ShinyText from '@/components/ShinyText';
 import TypingIndicator from '@/components/TypingIndicator';
+import remarkGfm from 'remark-gfm';
+
+const markdownBubbleClasses = {
+  p: 'mb-2 last:mb-0',
+  strong: 'font-semibold',
+  em: 'italic',
+  ul: 'list-disc list-outside ml-2 mb-2 space-y-0.5 last:mb-0',
+  ol: 'list-decimal list-outside ml-2 mb-2 space-y-0.5 last:mb-0',
+  li: 'leading-relaxed',
+  a: 'underline hover:opacity-80',
+  code: 'font-mono text-[0.9em] bg-black/10 px-1 py-0.5 rounded',
+  pre: 'font-mono text-[0.85em] bg-black/10 p-2 rounded-lg overflow-x-auto mb-2',
+  blockquote: 'border-l-2 border-current/30 pl-3 my-2 opacity-90',
+};
 
 type ChatMessage = {
   id: string;
@@ -80,7 +95,7 @@ export default function ChatPage() {
         const response = await startConversation();
         setConversationId(response.id);
       } catch (err) {
-        setError('Ups, algo se rompió, vete a hablar con mi humano.');
+        setError('Ups, algo está roto, vete a hablar con mi humano.');
       } finally {
         setIsInitializing(false);
       }
@@ -112,7 +127,7 @@ export default function ChatPage() {
       const response = await sendMessageAPI(conversationId, text);
       setMessages((prev) => [...prev, { id: response.id, role: 'assistant', content: response.message }]);
     } catch (err) {
-      setError('Ups, algo se rompió, vete a hablar con mi humano.');
+      setError('Ups, algo algo está roto, vete a hablar con mi humano.');
     } finally {
       setIsTyping(false);
     }
@@ -188,14 +203,100 @@ export default function ChatPage() {
                 {messages.map((m) => (
                   <div key={m.id} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                     <div
-                      className={`max-w-[80%] min-[561px]:max-w-[78%] rounded-2xl px-3.5 min-[561px]:px-4 py-2.5 min-[561px]:py-3 text-sm leading-relaxed opacity-[0.70] ${
+                      className={`max-w-[80%] min-[561px]:max-w-[78%] rounded-2xl px-3.5 min-[561px]:px-4 py-2.5 min-[561px]:py-3 text-sm leading-relaxed opacity-[0.70] [&_ul]:pl-2 [&_ol]:pl-2 ${
                         m.role === 'user'
                           ? 'bg-accent-light border-accent-light text-black'
                           : 'bg-gray-50 text-black'
                       }`}
                       style={{ wordBreak: 'break-word' }}
                     >
-                      <div className="whitespace-pre-wrap">{m.content}</div>
+                      <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        components={{
+                          p: ({ children }) => (
+                            <p className={markdownBubbleClasses.p}>{children}</p>
+                          ),
+                          strong: ({ children }) => (
+                            <strong className={markdownBubbleClasses.strong}>
+                              {children}
+                            </strong>
+                          ),
+                          em: ({ children }) => (
+                            <em className={markdownBubbleClasses.em}>
+                              {children}
+                            </em>
+                          ),
+                          ul: ({ children }) => (
+                            <ul className={markdownBubbleClasses.ul}>
+                              {children}
+                            </ul>
+                          ),
+                          ol: ({ children }) => (
+                            <ol className={markdownBubbleClasses.ol}>
+                              {children}
+                            </ol>
+                          ),
+                          li: ({ children }) => (
+                            <li className={markdownBubbleClasses.li}>
+                              {children}
+                            </li>
+                          ),
+                          a: ({ href, children }) => {
+                            const isInternal =
+                              href?.startsWith('/') && !href.startsWith('//');
+                            if (isInternal && href) {
+                              return (
+                                <Link
+                                  href={href}
+                                  className={markdownBubbleClasses.a}
+                                >
+                                  {children}
+                                </Link>
+                              );
+                            }
+                            return (
+                              <a
+                                href={href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={markdownBubbleClasses.a}
+                              >
+                                {children}
+                              </a>
+                            );
+                          },
+                          code: ({ className, children, ...props }) => {
+                            const isBlock = Boolean(
+                              className?.includes('language-')
+                            );
+                            if (isBlock) {
+                              return (
+                                <pre className={markdownBubbleClasses.pre}>
+                                  <code className={className}>{children}</code>
+                                </pre>
+                              );
+                            }
+                            return (
+                              <code
+                                className={markdownBubbleClasses.code}
+                                {...props}
+                              >
+                                {children}
+                              </code>
+                            );
+                          },
+                          pre: ({ children }) => <>{children}</>,
+                          blockquote: ({ children }) => (
+                            <blockquote
+                              className={markdownBubbleClasses.blockquote}
+                            >
+                              {children}
+                            </blockquote>
+                          ),
+                        }}
+                      >
+                        {m.content}
+                      </ReactMarkdown>
                     </div>
                   </div>
                 ))}

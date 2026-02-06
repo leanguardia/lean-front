@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Error sending message:', error);
     return NextResponse.json(
-      { error: 'Ups, algo se rompió' },
+      { error: 'Ups, algo no funciona' },
       { status: 500 }
     );
   }
