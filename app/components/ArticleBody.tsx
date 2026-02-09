@@ -20,6 +20,7 @@ const proseClasses = {
   a: 'text-accent hover:underline font-medium',
   code: 'font-mono text-sm bg-gray-100 text-gray-800 px-1.5 py-0.5 rounded',
   pre: 'font-mono text-sm bg-gray-100 text-gray-800 p-4 rounded-lg overflow-x-auto mb-4',
+  hr: 'border-t border-gray-200 my-6',
 };
 
 interface ArticleBodyProps {
@@ -50,6 +51,7 @@ export default function ArticleBody({ content }: ArticleBodyProps) {
               {children}
             </blockquote>
           ),
+          hr: () => <hr className={proseClasses.hr} />,
           ul: ({ children }) => <ul className={proseClasses.ul}>{children}</ul>,
           ol: ({ children }) => <ol className={proseClasses.ol}>{children}</ol>,
           li: ({ children }) => <li className={proseClasses.li}>{children}</li>,

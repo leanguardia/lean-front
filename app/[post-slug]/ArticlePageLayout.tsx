@@ -12,12 +12,13 @@ export default function ArticlePageLayout({
       <div className="fixed inset-0 z-0 pointer-events-none">
         <Particles
           particleColors={["#C3FAE8"]}
-          particleCount={280}
-          particleSpread={2}
+          particleCount={300}
+          particleSpread={3}
           speed={0.02}
           particleBaseSize={100}
           sizeRandomness={1}
-          cameraDistance={20}
+          cameraDistance={18}
+          disableRotation={true}
           className="w-full h-full"
         />
       </div>

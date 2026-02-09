@@ -32,7 +32,7 @@ type ChatMessage = {
 };
 
 const MODEL_NAME = 'gemini-2.0-flash-001';
-const MAX_INPUT_CHARS = 700;
+const MAX_INPUT_CHARS = 1400;
 
 const uid = () =>
   typeof crypto !== 'undefined' && 'randomUUID' in crypto

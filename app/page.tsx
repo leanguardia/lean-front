@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import Logo from '@/app/components/Logo';
 import LogoLoop, { type LogoItem } from '@/components/LogoLoop';
 import MagnetLines from '@/components/MagnetLines';
@@ -251,23 +252,42 @@ export default function Home() {
         </GridCard>
       </div>
 
-      {/* Footer - Socials */}
-      <div className="w-full pt-4 md:pt-6 pb-2 px-3 md:px-4">
-        <div className="flex items-center justify-center gap-6">
-          {socialLinks.map((social) => (
-            <a
-              key={social.href}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-all duration-300 hover:scale-114 text-gray-800 hover:text-gray-600"
-              aria-label={social.label}
+      <footer className="w-full pt-4 md:pt-6 pb-2 px-3 md:px-4">
+        <div className="flex flex-col items-center gap-4 md:flex-row md:items-center md:justify-between md:gap-6">
+          <span className="text-xs text-gray-600 md:text-sm order-1 md:order-none shrink-0">
+            © {new Date().getFullYear()} leancontinuo
+          </span>
+          <div className="flex items-center justify-center gap-4 md:gap-6 order-0 md:order-none shrink-0">
+            {socialLinks.map((social) => (
+              <a
+                key={social.href}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-all duration-300 hover:scale-114 text-gray-800 hover:text-gray-600"
+                aria-label={social.label}
+              >
+                <social.icon className="w-6 h-6" />
+              </a>
+            ))}
+          </div>
+          <nav className="flex items-center gap-2 text-xs text-gray-600 md:text-sm order-2 md:order-none shrink-0" aria-label="Legal">
+            <Link
+              href="/politica-de-privacidad"
+              className="hover:text-gray-800 transition-colors duration-300"
             >
-              <social.icon className="w-6 h-6" />
-            </a>
-          ))}
+              Privacidad
+            </Link>
+            <span aria-hidden="true">|</span>
+            <Link
+              href="/terminos-y-condiciones"
+              className="hover:text-gray-800 transition-colors duration-300"
+            >
+              Términos
+            </Link>
+          </nav>
         </div>
-      </div>
+      </footer>
     </div>
   );
 }
