@@ -177,6 +177,7 @@ export default function ChatPage() {
                 <div className="leading-tight text-left min-w-0">
                   <div className="text-base min-[561px]:text-lg font-medium text-gray-900 truncate">
                     leancontinuo
+                    <span className="text-xs text-gray-500 font-normal italic ml-1">(beta)</span>
                   </div>
                   <AvailabilityStatus isInitializing={isInitializing} hasError={!!error} />
                   <div className="text-sm text-gray-800 font-normal font-serif font-medium mt-1 whitespace-nowrap">

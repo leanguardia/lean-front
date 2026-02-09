@@ -120,7 +120,7 @@ export default async function PostPage({ params }: PageProps) {
               leancontinuo
             </p>
             <p className="font-sans text-sm text-gray-500">
-              tecnólogo y filósofo
+              creador, tecnólogo, filósofo
             </p>
           </div>
         </footer>
