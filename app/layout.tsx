@@ -22,7 +22,7 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "Leancontinuo | Evolución interna y externa",
   description:
-    "Evolución interna y externa, curiosidad y acción para elevar la humanidad. Leancontinuo es la ventana para conocer un apasionado por la evolución humana a través de la tecnología y la filosofía.",
+    "Evolución interna y externa, curiosidad y creación para elevar la humanidad. Leancontinuo es la ventana para conocer un apasionado por la evolución humana a través de la tecnología y la filosofía.",
   keywords: [
     "LeanContinuo",
     "Lean Continuo",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Leancontinuo",
-    description: "Evolución interna y externa, curiosidad y acción para elevar la humanidad.",
+    description: "Evolución interna y externa, curiosidad y creación para elevar la humanidad.",
     url: "https://leancontinuo.com/",
     siteName: "Leancontinuo",
     images: [
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     site: "@leancontinuo",
     creator: "@leancontinuo",
     title: "Leancontinuo",
-    description: "Evolución interna y externa, curiosidad y acción para elevar la humanidad.",
+    description: "Evolución interna y externa, curiosidad y creación para elevar la humanidad.",
     images: [
       {
         url: "https://leancontinuo.com/logomark.png",

@@ -37,7 +37,7 @@ export function GridCard({
     <div className={cn(colSpan, rowSpan, 'flex flex-col')}>
       <div
         className={cn(
-          'group relative flex flex-col overflow-hidden rounded-xl flex-grow',
+          'group relative flex flex-col overflow-hidden rounded-3xl flex-grow',
           bg,
           border,
           padding,

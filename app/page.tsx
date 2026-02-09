@@ -68,7 +68,7 @@ export default function Home() {
               <ShinyText text="evolución interna y externa"/>
             </div>
             <div className="text-lg text-gray-600 font-sans leading-tight text-center font-semibold">
-              <ShinyText text="curiosidad y acción para elevar la humanidad"/>
+              <ShinyText text="curiosidad y creación para elevar la humanidad"/>
             </div>
           </div>
         </GridCard>
