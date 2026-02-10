@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+![Leancontinuo](./public/logomark.png)
+
+# leancontinuo
+
+> Evolución interna y externa · curiosidad y creación para elevar la humanidad
+
+[Portfolio and personal brand](https://leancontinuo.com) site showcasing professional experience, interests, articles, and an AI chat assistant.
+
+Note: this is the **front-end** of the project. The back-end can be [found here](https://github.com/leanguardia/lean-back).
+
+---
+
+## Brand
+
+**leancontinuo** is a personal brand centered on continuous evolution—both internal and external. It combines curiosity, creation, and a commitment to elevate humanity through technology, philosophy, and lifelong learning. The site presents experience, interests in data analysis, software engineering, blockchain, arts, and philosophy, plus articles and external resources.
+
+---
+
+## Design: Brutalist Minimalism
+
+The layout follows a **brutalist minimalism** style:
+
+- **Modular grid** — Content is organized in clear, card-based blocks with rounded corners and explicit separation
+- **Strong hierarchy** — Sections like EXPERIENCIA, INTERESES, DATOS, and articles each occupy distinct tiles
+- **Limited palette** — Blue, Green, and neutral grays for readability
+- **Functional typography** — Sans-serif (DM Sans) and serif (Outfit)
+- **No excess decoration** — Focus on content over ornamentation
+- **Responsive layout** — CSS Grid adapts from mobile to desktop while preserving the modular structure
+
+---
+
+## Features
+
+- **AI Chat** — "Artificial Lean" chat assistant via `/chat`
+- **Article carousel** — Essays and reflections
+- **Experience showcase** — Logos and links to institutions and employers
+- **Interests loop** — Scrolling list of interests
+- **External resources** — Links to talks, podcasts, blog posts, and builds
+- **Legal pages** — Privacy policy and terms of service
+
+---
+
+## Tech Stack
+
+- **Next.js 16** (App Router)
+- **React 19**
+- **TypeScript**
+- **Tailwind CSS 4**
+- **GSAP & Motion** — Animations
+- **react-markdown** — Markdown rendering
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- pnpm (recommended) or npm
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Clone the repository
+git clone https://github.com/leanguardia/lean-front.git
+cd lean-front
+
+# Install dependencies
+pnpm install
+
+# copy environment variables
+cp .env.example .env
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Edit `.env` with your API keys if using the AI chat or analytics features.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Development
 
-## Learn More
+```bash
+pnpm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open [http://localhost:3000](http://localhost:3000).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Build
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+pnpm build
+pnpm start
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Author
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Leandro Guardia**
+
+[MIT LICENSE](LICENSE)
