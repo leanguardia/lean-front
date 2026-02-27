@@ -31,7 +31,6 @@ type ChatMessage = {
   content: string;
 };
 
-const MODEL_NAME = 'gemini-2.0-flash-001';
 const MAX_INPUT_CHARS = 1400;
 
 const uid = () =>
@@ -78,6 +77,7 @@ export default function ChatPage() {
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [conversationId, setConversationId] = useState<string | null>(null);
+  const [modelName, setModelName] = useState<string | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isInitializing, setIsInitializing] = useState(true);
@@ -94,6 +94,7 @@ export default function ChatPage() {
       try {
         const response = await startConversation();
         setConversationId(response.id);
+        setModelName(response.modelName);
       } catch (err) {
         setError('Ups, algo está roto, vete a hablar con mi humano.');
       } finally {
@@ -180,9 +181,11 @@ export default function ChatPage() {
                     <span className="text-xs text-gray-500 font-normal italic ml-1">(beta)</span>
                   </div>
                   <AvailabilityStatus isInitializing={isInitializing} hasError={!!error} />
-                  <div className="text-sm text-gray-800 font-normal font-serif font-medium mt-1 whitespace-nowrap">
-                    powered by: <i>{MODEL_NAME}</i>
-                  </div>
+                  {modelName && (
+                    <div className="text-sm text-gray-800 font-normal font-serif font-medium mt-1 whitespace-nowrap">
+                      powered by: <i>{modelName}</i>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

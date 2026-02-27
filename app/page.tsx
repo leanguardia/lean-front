@@ -119,8 +119,8 @@ export default function Home() {
         >
           <ProfileCard
             avatarUrl="/images/lean.png"
-            title="chat with"
-            name="Artificial Lean"
+            title="Artificial Lean"
+            name="Chat with me"
             className="flex-1 min-h-0"
           />
         </GridCard>
@@ -198,7 +198,7 @@ export default function Home() {
               href="https://t.me/leanguardia"
               target="_blank"
               aria-label="Escribeme en Telegram"
-              className="relative z-10 text-white rounded-full text-xl opacity-85 font-bold hover:scale-140 hover:opacity-100 transition duration-300"
+              className="relative z-10 text-white rounded-full text-xl opacity-85 font-bold hover:scale-130 hover:opacity-100 transition duration-300"
             >
               E S C R Í B E M E
             </a>
@@ -243,7 +243,7 @@ export default function Home() {
                 className="group/link flex flex-col items-center justify-center gap-2"
               >
                 <resource.icon className="text-lg md:text-xl text-white group-hover/link:text-accent-light transition-all duration-300" />
-                <span className="text-xs lg:text-sm text-white group-hover/link:text-accent-light leading-snug text-center px-2 transition-all duration-300">
+                <span className="text-xs lg:text-sm text-white group-hover/link:text-accent-light group-hover/link:font-bold leading-snug text-center px-2 transition-all duration-300">
                   {resource.label}
                 </span>
               </a>

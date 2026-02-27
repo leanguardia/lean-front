@@ -7,8 +7,7 @@ export interface SendMessageDto {
 
 export interface ChatStartResponse {
   id: string;
-  ipAddress: string;
-  userAgent: string;
+  modelName: string;
 }
 
 export interface MessageResponseDto {
@@ -40,8 +39,7 @@ export async function startConversation(): Promise<ChatStartResponse> {
     await sleep(700);
     return {
       id: uid(),
-      ipAddress: '127.0.0.1',
-      userAgent: 'Debug Mode',
+      modelName: 'debug-model',
     };
   }
 
