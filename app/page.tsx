@@ -9,13 +9,13 @@ import ShinyText from '@/components/ShinyText';
 import Iridescence from '@/components/Iridescence';
 import ArticleCarousel from '@/components/ArticleCarousel';
 import Squares from '@/components/Squares';
+import FooterButtons from '@/components/FooterButtons';
 import GridCard from '@/components/GridCard';
 import {
   interests,
   experienceImages,
   articles,
   externalResources,
-  socialLinks,
   calculateGridTemplateRows,
 } from '@/lib/data';
 
@@ -257,20 +257,7 @@ export default function Home() {
           <span className="text-xs text-gray-600 md:text-sm order-1 md:order-none shrink-0">
             © {new Date().getFullYear()} leancontinuo
           </span>
-          <div className="flex items-center justify-center gap-4 md:gap-6 order-0 md:order-none shrink-0">
-            {socialLinks.map((social) => (
-              <a
-                key={social.href}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-all duration-300 hover:scale-114 text-gray-800 hover:text-gray-600"
-                aria-label={social.label}
-              >
-                <social.icon className="w-6 h-6" />
-              </a>
-            ))}
-          </div>
+          <FooterButtons />
           <nav className="flex items-center gap-2 text-xs text-gray-600 md:text-sm order-2 md:order-none shrink-0" aria-label="Legal">
             <Link
               href="/politica-de-privacidad"
