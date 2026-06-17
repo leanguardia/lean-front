@@ -85,8 +85,8 @@ export default function Home() {
             <h3 className="text-md md:text-xl font-serif font-light text-gray-900 mb-2 md:mb-0">
               E X P E R I E N C I A
             </h3>
-            <div 
-              className="grid grid-cols-2 gap-x-0 lg:gap-x-2 xl:gap-x-8 rounded-lg flex-1"
+            <div
+              className="grid grid-cols-2 gap-x-0 lg:gap-x-2 xl:gap-x-8 rounded-lg flex-1 min-h-0"
               style={{ gridTemplateRows: gridTemplateRows }}
             >
               {experienceImages.map((image, index) => (
@@ -95,7 +95,7 @@ export default function Home() {
                   href={image.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-secondary hover:bg-neutral-100 rounded-xl flex items-center justify-center p-1 sm:p-2 m-0 sm:m-1 transition-all duration-300 ease-out cursor-pointer overflow-hidden hover:scale-105"
+                  className="bg-secondary hover:bg-neutral-100 rounded-xl flex items-center justify-center min-h-0 min-w-0 p-1 sm:p-2 m-0 sm:m-1 transition-all duration-300 ease-out cursor-pointer overflow-hidden hover:scale-105"
                 >
                   <Image
                     src={image.src}

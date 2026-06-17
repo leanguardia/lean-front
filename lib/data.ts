@@ -80,7 +80,7 @@ export const experienceImages: ExperienceImage[] = [
   {
     src: '/images/relations/ucb.png',
     alt: 'UCB',
-    isSquare: true,
+    isSquare: false,
     url: 'https://cba.ucb.edu.bo/',
   },
   {
@@ -92,7 +92,7 @@ export const experienceImages: ExperienceImage[] = [
   {
     src: '/images/relations/nueva-acropolis.png',
     alt: 'Nueva Acropolis',
-    isSquare: false,
+    isSquare: true,
     url: 'https://acropolis.org.bo/',
   },
   {
@@ -104,7 +104,7 @@ export const experienceImages: ExperienceImage[] = [
   {
     src: '/images/relations/afs.png',
     alt: 'AFS',
-    isSquare: true,
+    isSquare: false,
     url: 'https://www.afs.de/',
   },
 ];
