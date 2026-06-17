@@ -6,7 +6,7 @@
 
 [Portfolio and personal brand](https://leancontinuo.com) site showcasing professional experience, interests, articles, and an AI chat assistant.
 
-Note: this is the **front-end** of the project. The back-end can be [found here](https://github.com/leanguardia/lean-back).
+Note: this is the **front-end** of the project. The back-end can be [found here](https://github.com/leancontinuo/lean-back).
 
 ---
 
@@ -62,7 +62,7 @@ The layout follows a **brutalist minimalism** style:
 
 ```bash
 # Clone the repository
-git clone https://github.com/leanguardia/lean-front.git
+git clone https://github.com/leancontinuo/lean-front.git
 cd lean-front
 
 # Install dependencies

@@ -174,7 +174,7 @@ export const socialLinks: SocialLink[] = [
     label: 'X (Twitter)',
   },
   {
-    href: 'https://github.com/leanguardia',
+    href: 'https://github.com/leancontinuo',
     icon: FaGithub,
     label: 'GitHub',
   },
